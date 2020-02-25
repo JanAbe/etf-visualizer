@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { InputBase, Divider, Button, fade } from '@material-ui/core';
+import { InputBase, Divider, Button, Table, TableHead, TableRow, TableCell, TableContainer, TableBody, fade } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'; 
 import SearchIcon from '@material-ui/icons/Search';
 import Map from './map';
@@ -61,11 +61,20 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: 'rgba(255, 255, 255, 0.08)',
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
-          },
+        },
     },
     searchButtonWrapper: {
         display: 'flex',
         justifyContent: 'flex-end'
+    },
+    table: {
+        // minWidth: 350,
+    },
+    noPaddingLeft: {
+        paddingLeft: 0
+    },
+    noPaddingRight: {
+        paddingRight: 0
     }
 }));
 
@@ -95,17 +104,42 @@ const Sidebar = () => {
                         <Button className={[classes.fullHeight, classes.searchButton].join(' ')} variant='contained' color='primary'>Search</Button>
                     </Grid>
                 </Grid>
-
                 <Divider/>
 
-                <Button variant='contained' color='primary'>Click here 2</Button>
-                <Divider/>
-
-                <ol>
-                    <li>China</li>
-                    <li>Italy</li>
-                    <li>Congo</li>
-                </ol>
+                {/* ETF data table */}
+                <TableContainer>
+                    <Table className={classes.table} size="small">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell className={[classes.textWhite, classes.noPaddingRight].join(' ')}>Security</TableCell>
+                                <TableCell align="right" className={[classes.textWhite, classes.noPaddingLeft].join(' ')}>% of Total Net Assets</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow>
+                                {/* 
+                                    todo:
+                                    kijken naar de overflow, als een 'security' naam te lang is.
+                                    kijken of ik boven deze tabel, en onder de searchbar een sectie 'Algemene informatie' kan maken:
+                                        met daarin info zoals, totaal bedrag in $ ge"investeerd, datum van de data 
+                                    kijken naar filter mogelijkheden van de tabel's data:
+                                        filteren op percentage ge"investeerd (groot naar klein en vice versa)
+                                        filteren op alphabetische volgorde
+                                        filteren op land
+                                    kijken hoe ik alle data wil laten zien, de tabel is namelijk super klein op het moment,
+                                    omdat de ruimte in de sidebar beperkt is.
+                                        misschien als je op een 'row' drukt, wordt meer informatie over dat bedrijf/security getoond
+                                            maar waar? i.p.v de wereldkaart, of in de sidebar?
+                                            of de sidebar vergroten van huide breedte (20%?) naar bijv. 40% als op 'toon meer info' wordt drukt
+                                            of als op een 'row' wordt gedrukt.
+                                    tooltips toevoegen aan de tableHeaders, uitleggen wat een security is en wat '% of total net assets betekend'
+                                */}
+                                <TableCell className={[classes.textWhite, classes.noPaddingRight].join(' ')}>Adr Alibaba Group Hldg</TableCell>
+                                <TableCell className={[classes.textWhite, classes.centerText, classes.noPaddingLeft].join(' ')} align="right">5.9%</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </Grid>
 
             {/* map section */}
