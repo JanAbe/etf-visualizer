@@ -39,9 +39,6 @@ const useStyles = makeStyles(theme => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
         marginRight: theme.spacing(2),
         marginLeft: 0,
         marginBottom: '10px',
@@ -61,7 +58,10 @@ const useStyles = makeStyles(theme => ({
     searchButton: {
         height: '100%',
         fontSize: '13px',
-        backgroundColor: 'rgba(255, 255, 255, 0.08)'
+        backgroundColor: 'rgba(255, 255, 255, 0.08)',
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.25),
+          },
     },
     searchButtonWrapper: {
         display: 'flex',
