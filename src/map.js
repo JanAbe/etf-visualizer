@@ -10,9 +10,9 @@ class Map extends React.Component {
         super(props);
         this.state = {
             viewport: {
-                latitude: 44.022672,
-                longitude: 10.888889,
-                zoom: 1.66,
+                latitude: 38.022672,
+                longitude: 15.188889,
+                zoom: 1.57,
             }
         };
     }
@@ -25,6 +25,7 @@ class Map extends React.Component {
         const lightMapSelected = this.props.lightMapSelected;
         const lightMapURL = 'mapbox://styles/mapbox/light-v10';
         const darkMapURL = 'mapbox://styles/mapbox/dark-v10';
+
         return (
             <MapGL
                 {...this.state.viewport}
