@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { InputBase, Divider, Button, Table, TableHead, TableRow, TableCell, TableContainer, TableBody, fade } from '@material-ui/core';
+import { InputBase, Divider, Button, Table, TableHead, TableRow, TableCell, TableContainer, TableBody, fade, Box } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'; 
-import SearchIcon from '@material-ui/icons/Search';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Tooltip from '@material-ui/core/Tooltip';
 import Map from './map';
@@ -38,40 +37,29 @@ const useStyles = makeStyles(theme => ({
         paddingRight: '15px',
     },
     searchbar: {
-        position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
         marginBottom: '10px',
-        width: '100%',
-    },
-    searchIcon: {
-        height: '100%',
-        position: 'absolute',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: '10px'
     },
     searchInput: {
-        padding: theme.spacing(0.6, 1, 0.6, 5.5),
+        padding: theme.spacing(0.6, 2.0, 0.6, 2.5),
+        backgroundColor: fade(theme.palette.common.white, 0.11),
         borderRadius: theme.shape.borderRadius,
         '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.05),
+            backgroundColor: fade(theme.palette.common.white, 0.15),
         },
     },
     searchButton: {
         height: '100%',
         fontSize: '13px',
         backgroundColor: 'rgba(255, 255, 255, 0.08)',
+        backgroundColor: fade(theme.palette.common.white, 0.18),
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
     },
     searchButtonWrapper: {
         display: 'flex',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-start'
     },
     noPaddingLeft: {
         paddingLeft: 0
@@ -79,26 +67,43 @@ const useStyles = makeStyles(theme => ({
     noPaddingRight: {
         paddingRight: 0
     },
+    titleSection: {
+        width: '100%'
+    },
     expandIcon: {
         fontSize: '0.875rem'
     },
     expandButton: {
-        borderRadius: '30px',
+        borderRadius: '20px',
         minWidth: '30px',
-        padding: theme.spacing(1, 1, 1, 1),
-        marginBottom: '35px',
-        marginLeft: '7px',
+        padding: theme.spacing(0, 0, 0, 0),
+        height: '25%',
         backgroundColor: 'rgba(255, 255, 255, 0.24)',
         '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
+            backgroundColor: fade(theme.palette.common.white, 0.45),
         },
+        marginTop: '5px',
+        marginRight: '5px',
     },
     expandButtonWrapper: {
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'flex-end'
     }
 }));
+
+const createData = (security, percentage) => {
+    return { security, percentage };
+}
+
+const rows = [
+    createData('Alibaba Group Holding Ltd.', 5.9),
+    createData('Tencent Holdings Ltd.', 4.6),
+    createData('Taiwan Semiconductor Manufacturing Co. Ltd.', 4.2),
+    createData('China Construction Bank Corp.', 1.2),
+    createData('Naspers Ltd.', 1.2),
+    createData('Ping An Insurance Group Co. of China Ltd.', 1.2),
+    createData('Reliance Industries Ltd.', 1.0),
+]
 
 const Sidebar = () => {
     const classes = useStyles();
@@ -106,30 +111,41 @@ const Sidebar = () => {
     return (
         <Grid container className={classes.fullHeight}>
             {/* sidebar section */}
-            <Grid item className={[classes.width40, classes.dark, classes.centerText, classes.paddingHorizontal].join(' ')}>
+            <Grid item className={[classes.width40, classes.dark, classes.centerText].join(' ')}>
                 {/* Title section */}
-                <h2>ETF Visualizer</h2>
+                <Grid container className={classes.titleSection}>
+                    <Grid item xs={10}>
+                        <h2>ETF Visualizer</h2>
+                        <h5>Search. Select. Visualize.</h5>
+                    </Grid>
+                    <Grid item xs={2} className={classes.expandButtonWrapper}>
+                        <Tooltip title="Expand" placement="right">
+                            <Button variant='contained' className={[classes.expandButton, classes.textWhite].join(' ')}>
+                                <ArrowForwardIosIcon className={classes.expandIcon} />
+                            </Button>
+                        </Tooltip>
+                    </Grid>
+                </Grid>
                 <Divider />
 
                 {/* Searchbar for ETF's */}
-                <Grid container className={classes.searchbar}>
+                <Grid container className={[classes.paddingHorizontal, classes.searchbar ].join(' ')}>
                     <Grid item xs={9}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
                         <InputBase
                             placeholder='Search for an ETF...'
-                            className={[classes.textWhite, classes.fullWidth, classes.searchInput].join(' ')}
+                            className={[classes.textWhite, classes.searchInput, classes.fullWidth].join(' ')}
                         />
                     </Grid>
                     <Grid item xs={3} className={classes.searchButtonWrapper}>
-                        <Button className={[classes.fullHeight, classes.searchButton].join(' ')} variant='contained' color='primary'>Search</Button>
+                        <Button className={[classes.fullHeight, classes.searchButton].join(' ')} variant='contained' color='primary'>
+                            Search
+                        </Button>
                     </Grid>
                 </Grid>
 
                 {/* ETF data table */}
-                <Grid container >
-                    <Grid item xs={11}>
+                <Grid container className={classes.paddingHorizontal}>
+                    <Grid item xs={12}>
                         <TableContainer>
                             <Table size="small">
                                 <TableHead>
@@ -143,37 +159,41 @@ const Sidebar = () => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    <TableRow>
-                                        {/* 
-                                            todo:
-                                            kijken naar de overflow, als een 'security' naam te lang is.
-                                            kijken of ik boven deze tabel, en onder de searchbar een sectie 'Algemene informatie' kan maken:
-                                                met daarin info zoals, totaal bedrag in $ ge"investeerd, datum van de data, link naar website van de ETF 
-                                            kijken naar filter mogelijkheden van de tabel's data:
-                                                filteren op percentage ge"investeerd (groot naar klein en vice versa)
-                                                filteren op alphabetische volgorde
-                                                filteren op land
-                                            kijken hoe ik alle data wil laten zien, de tabel is namelijk super klein op het moment,
-                                            omdat de ruimte in de sidebar beperkt is.
-                                                misschien als je op een 'row' drukt, wordt meer informatie over dat bedrijf/security getoond
-                                                    maar waar? i.p.v de wereldkaart, of in de sidebar?
-                                                    of de sidebar vergroten van huide breedte (20%?) naar bijv. 40% als op 'toon meer info' wordt drukt
-                                                    of als op een 'row' wordt gedrukt.
-                                            tooltips toevoegen aan de tableHeaders, uitleggen wat een security is en wat '% of total net assets betekend'
-                                        */}
-                                        <TableCell className={[classes.textWhite, classes.noPaddingRight].join(' ')}>Adr Alibaba Group Hldg</TableCell>
-                                        <TableCell className={[classes.textWhite, classes.centerText, classes.noPaddingLeft].join(' ')} align="right">5.9%</TableCell>
-                                    </TableRow>
+                                    {rows.map(row => (
+                                        <TableRow>
+                                            <TableCell style={{width:'50%'}} className={[classes.textWhite, classes.noPaddingRight].join(' ')}>
+                                                <div style={{width: 180, whiteSpace:"nowrap"}}>
+                                                    <Box textOverflow="ellipsis" overflow="hidden">
+                                                        {/* todo: when hovering with mouse over a row, enlarge that row and show the full name */}
+                                                        {row.security}
+                                                    </Box>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell style={{width:'50%'}} className={[classes.textWhite, classes.centerText].join(' ')} align="right">
+                                                {row.percentage}%
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                    {/* 
+                                        todo:
+                                        kijken naar de overflow, als een 'security' naam te lang is.
+                                        kijken of ik boven deze tabel, en onder de searchbar een sectie 'Algemene informatie' kan maken:
+                                            met daarin info zoals, totaal bedrag in $ ge"investeerd, datum van de data, link naar website van de ETF 
+                                        kijken naar filter mogelijkheden van de tabel's data:
+                                            filteren op percentage ge"investeerd (groot naar klein en vice versa)
+                                            filteren op alphabetische volgorde
+                                            filteren op land
+                                        kijken hoe ik alle data wil laten zien, de tabel is namelijk super klein op het moment,
+                                        omdat de ruimte in de sidebar beperkt is.
+                                            misschien als je op een 'row' drukt, wordt meer informatie over dat bedrijf/security getoond
+                                                maar waar? i.p.v de wereldkaart, of in de sidebar?
+                                                of de sidebar vergroten van huide breedte (20%?) naar bijv. 40% als op 'toon meer info' wordt drukt
+                                                of als op een 'row' wordt gedrukt.
+                                        tooltips toevoegen aan de tableHeaders, uitleggen wat een security is en wat '% of total net assets betekend'
+                                    */}
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                    </Grid>
-                    <Grid item xs={1} className={classes.expandButtonWrapper}>
-                        <Tooltip title="Expand" placement="right">
-                            <Button variant='contained' className={[classes.expandButton, classes.textWhite].join(' ')}>
-                                <ArrowForwardIosIcon className={classes.expandIcon} />
-                            </Button>
-                        </Tooltip>
                     </Grid>
                 </Grid>
             </Grid>
