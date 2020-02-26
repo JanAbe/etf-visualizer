@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { InputBase, Divider, Button, Table, TableHead, TableRow, TableCell, TableContainer, TableBody, fade } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'; 
 import SearchIcon from '@material-ui/icons/Search';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import Tooltip from '@material-ui/core/Tooltip';
 import Map from './map';
 
 const useStyles = makeStyles(theme => ({
@@ -54,6 +56,10 @@ const useStyles = makeStyles(theme => ({
     },
     searchInput: {
         padding: theme.spacing(0.6, 1, 0.6, 5.5),
+        borderRadius: theme.shape.borderRadius,
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.05),
+        },
     },
     searchButton: {
         height: '100%',
@@ -67,14 +73,30 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'flex-end'
     },
-    table: {
-        // minWidth: 350,
-    },
     noPaddingLeft: {
         paddingLeft: 0
     },
     noPaddingRight: {
         paddingRight: 0
+    },
+    expandIcon: {
+        fontSize: '0.875rem'
+    },
+    expandButton: {
+        borderRadius: '30px',
+        minWidth: '30px',
+        padding: theme.spacing(1, 1, 1, 1),
+        marginBottom: '35px',
+        marginLeft: '7px',
+        backgroundColor: 'rgba(255, 255, 255, 0.24)',
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.25),
+        },
+    },
+    expandButtonWrapper: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 }));
 
@@ -91,7 +113,7 @@ const Sidebar = () => {
 
                 {/* Searchbar for ETF's */}
                 <Grid container className={classes.searchbar}>
-                    <Grid xs={9}>
+                    <Grid item xs={9}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
@@ -100,46 +122,60 @@ const Sidebar = () => {
                             className={[classes.textWhite, classes.fullWidth, classes.searchInput].join(' ')}
                         />
                     </Grid>
-                    <Grid xs={3} className={classes.searchButtonWrapper}>
+                    <Grid item xs={3} className={classes.searchButtonWrapper}>
                         <Button className={[classes.fullHeight, classes.searchButton].join(' ')} variant='contained' color='primary'>Search</Button>
                     </Grid>
                 </Grid>
-                <Divider/>
 
                 {/* ETF data table */}
-                <TableContainer>
-                    <Table className={classes.table} size="small">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell className={[classes.textWhite, classes.noPaddingRight].join(' ')}>Security</TableCell>
-                                <TableCell align="right" className={[classes.textWhite, classes.noPaddingLeft].join(' ')}>% of Total Net Assets</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            <TableRow>
-                                {/* 
-                                    todo:
-                                    kijken naar de overflow, als een 'security' naam te lang is.
-                                    kijken of ik boven deze tabel, en onder de searchbar een sectie 'Algemene informatie' kan maken:
-                                        met daarin info zoals, totaal bedrag in $ ge"investeerd, datum van de data 
-                                    kijken naar filter mogelijkheden van de tabel's data:
-                                        filteren op percentage ge"investeerd (groot naar klein en vice versa)
-                                        filteren op alphabetische volgorde
-                                        filteren op land
-                                    kijken hoe ik alle data wil laten zien, de tabel is namelijk super klein op het moment,
-                                    omdat de ruimte in de sidebar beperkt is.
-                                        misschien als je op een 'row' drukt, wordt meer informatie over dat bedrijf/security getoond
-                                            maar waar? i.p.v de wereldkaart, of in de sidebar?
-                                            of de sidebar vergroten van huide breedte (20%?) naar bijv. 40% als op 'toon meer info' wordt drukt
-                                            of als op een 'row' wordt gedrukt.
-                                    tooltips toevoegen aan de tableHeaders, uitleggen wat een security is en wat '% of total net assets betekend'
-                                */}
-                                <TableCell className={[classes.textWhite, classes.noPaddingRight].join(' ')}>Adr Alibaba Group Hldg</TableCell>
-                                <TableCell className={[classes.textWhite, classes.centerText, classes.noPaddingLeft].join(' ')} align="right">5.9%</TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                <Grid container >
+                    <Grid item xs={11}>
+                        <TableContainer>
+                            <Table size="small">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell className={[classes.textWhite, classes.noPaddingRight].join(' ')}>
+                                            Security
+                                        </TableCell>
+                                        <TableCell align="right" className={[classes.textWhite, classes.noPaddingLeft].join(' ')}>
+                                            % of Total Net Assets
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        {/* 
+                                            todo:
+                                            kijken naar de overflow, als een 'security' naam te lang is.
+                                            kijken of ik boven deze tabel, en onder de searchbar een sectie 'Algemene informatie' kan maken:
+                                                met daarin info zoals, totaal bedrag in $ ge"investeerd, datum van de data, link naar website van de ETF 
+                                            kijken naar filter mogelijkheden van de tabel's data:
+                                                filteren op percentage ge"investeerd (groot naar klein en vice versa)
+                                                filteren op alphabetische volgorde
+                                                filteren op land
+                                            kijken hoe ik alle data wil laten zien, de tabel is namelijk super klein op het moment,
+                                            omdat de ruimte in de sidebar beperkt is.
+                                                misschien als je op een 'row' drukt, wordt meer informatie over dat bedrijf/security getoond
+                                                    maar waar? i.p.v de wereldkaart, of in de sidebar?
+                                                    of de sidebar vergroten van huide breedte (20%?) naar bijv. 40% als op 'toon meer info' wordt drukt
+                                                    of als op een 'row' wordt gedrukt.
+                                            tooltips toevoegen aan de tableHeaders, uitleggen wat een security is en wat '% of total net assets betekend'
+                                        */}
+                                        <TableCell className={[classes.textWhite, classes.noPaddingRight].join(' ')}>Adr Alibaba Group Hldg</TableCell>
+                                        <TableCell className={[classes.textWhite, classes.centerText, classes.noPaddingLeft].join(' ')} align="right">5.9%</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                    <Grid item xs={1} className={classes.expandButtonWrapper}>
+                        <Tooltip title="Expand" placement="right">
+                            <Button variant='contained' className={[classes.expandButton, classes.textWhite].join(' ')}>
+                                <ArrowForwardIosIcon className={classes.expandIcon} />
+                            </Button>
+                        </Tooltip>
+                    </Grid>
+                </Grid>
             </Grid>
 
             {/* map section */}
