@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { InputBase, Divider, Button, Table, TableHead, TableRow, TableCell, TableContainer, TableBody, fade, Box } from '@material-ui/core';
+import { InputBase, Button, Table, TablePagination, TableHead, TableRow, TableCell, TableContainer, TableBody, fade, Box } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'; 
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -41,9 +41,9 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '10px',
     },
     searchInput: {
-        padding: theme.spacing(0.6, 2.0, 0.6, 2.5),
+        padding: theme.spacing(0.6, 2.0, 0.6, 1.5),
         backgroundColor: fade(theme.palette.common.white, 0.11),
-        borderRadius: theme.shape.borderRadius,
+        borderRadius: '4px 0px 0px 4px',
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.15),
         },
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     searchButton: {
         height: '100%',
         fontSize: '13px',
-        backgroundColor: 'rgba(255, 255, 255, 0.08)',
+        borderRadius: '0px 4px 4px 0px',
         backgroundColor: fade(theme.palette.common.white, 0.18),
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
     expandButtonWrapper: {
         display: 'flex',
         justifyContent: 'flex-end'
-    }
+    },
 }));
 
 const createData = (security, percentage) => {
@@ -126,7 +126,16 @@ const Sidebar = () => {
                         </Tooltip>
                     </Grid>
                 </Grid>
-                <Divider />
+
+                {/* General ETF Info section */}
+                <Grid>
+                    <div>
+                        ${5_256_365_000} invested
+                    </div>
+                    <div>
+                        Visit the ETF's website
+                    </div>
+                </Grid>
 
                 {/* Searchbar for ETF's */}
                 <Grid container className={[classes.paddingHorizontal, classes.searchbar ].join(' ')}>
@@ -200,7 +209,7 @@ const Sidebar = () => {
 
             {/* map section */}
             <Grid item className={classes.width60}>
-                {/* <Map lightMapSelected={false} className={classes.map}/> */}
+                {/* <Map className={classes.map}/> */}
             </Grid>
         </Grid>
     );

@@ -22,8 +22,6 @@ class Map extends React.Component {
     }
 
     render() {
-        const lightMapSelected = this.props.lightMapSelected;
-        const lightMapURL = 'mapbox://styles/mapbox/light-v10';
         const darkMapURL = 'mapbox://styles/mapbox/dark-v10';
 
         return (
@@ -31,7 +29,7 @@ class Map extends React.Component {
                 {...this.state.viewport}
                 height='100%'
                 width='100%'
-                mapStyle={lightMapSelected ? lightMapURL : darkMapURL}
+                mapStyle={darkMapURL}
                 onViewportChange={this.onViewportChange}
                 mapboxApiAccessToken={MAPBOX_TOKEN}
             />
