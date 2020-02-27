@@ -1,0 +1,18 @@
+
+{/* 
+    todo:
+    kijken naar de overflow, als een 'security' naam te lang is.
+    kijken of ik boven deze tabel, en onder de searchbar een sectie 'Algemene informatie' kan maken:
+        met daarin info zoals, totaal bedrag in $ ge"investeerd, datum van de data, link naar website van de ETF 
+    kijken naar filter mogelijkheden van de tabel's data:
+        filteren op percentage ge"investeerd (groot naar klein en vice versa)
+        filteren op alphabetische volgorde
+        filteren op land
+    kijken hoe ik alle data wil laten zien, de tabel is namelijk super klein op het moment,
+    omdat de ruimte in de sidebar beperkt is.
+        misschien als je op een 'row' drukt, wordt meer informatie over dat bedrijf/security getoond
+            maar waar? i.p.v de wereldkaart, of in de sidebar?
+            of de sidebar vergroten van huide breedte (20%?) naar bijv. 40% als op 'toon meer info' wordt drukt
+            of als op een 'row' wordt gedrukt.
+    tooltips toevoegen aan de tableHeaders, uitleggen wat een security is en wat '% of total net assets betekend'
+*/}
