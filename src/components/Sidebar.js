@@ -10,18 +10,23 @@ const useStyles = makeStyles(theme => ({
     sidebar: {
         paddingLeft: '1.5%',
         paddingRight: '1.5%',
-        width: '33%',
         boxShadow: '5px 1px 10px 0px rgba(50, 50, 50, 0.3)',
         zIndex: 1
+    },
+    defaultWidth: {
+        width: '20%'
+    },
+    expandedWidth: {
+        width: '40%',
     }
 }));
 
-const Sidebar = () => {
+const Sidebar = ({ expanded, expandAction }) => {
     const classes = useStyles();
 
     return (
-        <Grid className={classes.sidebar}>
-            <MenuHeader />
+        <Grid className={[expanded ? classes.expandedWidth : classes.defaultWidth, classes.sidebar].join(' ')}>
+            <MenuHeader expanded={expanded} expandAction={expandAction} />
             <Divider />
             {/* <GeneralInfo /> */}
             <Searchbar />

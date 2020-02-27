@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, InputBase, Button, Grid } from '@material-ui/core';
+import { TextField, Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
         paddingRight: '5px'
     },
     searchButton: {
-        height: '100%',
         width: '100%',
         height: '40px'
     }

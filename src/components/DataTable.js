@@ -1,9 +1,6 @@
 import React from 'react';
-import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Box, Grid, fade } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Box, Grid } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-}));
 
 const createData = (security, percentage) => {
     return { security, percentage };
@@ -20,7 +17,6 @@ const rows = [
 ]
 
 const DataTable = () => {
-    const classes = useStyles();
     return (
         <Grid container>
             <Grid item xs={12}>

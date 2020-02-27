@@ -29,7 +29,7 @@ class Map extends React.Component {
             <MapGL
                 {...this.state.viewport}
                 height='100%'
-                width='100%'
+                width='80%' // find out way to switch width based on if sidebar expanded or not. Not expanded = 80%, expanded = 60% for example. Match it with sidebar width
                 mapStyle={prefersDarkMode ? darkMapURL : lightMapURL}
                 onViewportChange={this.onViewportChange}
                 mapboxApiAccessToken={MAPBOX_TOKEN}
