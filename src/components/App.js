@@ -22,7 +22,10 @@ const App = () => {
             <CssBaseline />
             <Layout>
                 <Sidebar />
-                <Map prefersDarkMode={prefersDarkMode} />
+                {/* <Map prefersDarkMode={prefersDarkMode} /> */}
+                <div style={{backgroundColor: 'pink', width: '67%'}}>
+                    
+                </div>
             </Layout>
         </ThemeProvider>
     );
