@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: '1.5%',
         paddingRight: '1.5%',
         boxShadow: '5px 1px 10px 0px rgba(50, 50, 50, 0.3)',
-        zIndex: 1
+        zIndex: 1,
+        transition: 'width 0.8s'
     },
     defaultWidth: {
         width: '20%'
