@@ -11,7 +11,7 @@ const viewState = {
     latitude: 18.022672,
     longitude: 19.188889,
     zoom: 1.92,
-    minZoom: 1.52,
+    minZoom: 1.72,
     pitch: 35,
     bearing: 0
   };
@@ -34,9 +34,8 @@ class Map extends React.Component {
     }
 
     render() {
-        const lightMapURL = 'mapbox://styles/mapbox/light-v10';
-        const darkMapURL = 'mapbox://styles/mapbox/dark-v10';
         const prefersDarkMode = this.props.prefersDarkMode;
+        const darkMapURL = 'mapbox://styles/mapbox/dark-v10';
         const expanded = this.props.expanded;
         const defaultWidth = '80%';
         const expandedWidth = '60%';
