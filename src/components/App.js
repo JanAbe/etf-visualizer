@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Layout from './Layout';
 import Map from './Map';
 import Sidebar from './Sidebar';
@@ -21,6 +21,7 @@ const App = () =>  {
 
     const [expanded, setExpanded] = useState(false); 
 
+    // handleExpandButtonClick toggles the expansion of the sidebar
     const handleExpandButtonClick = () => {
         setExpanded(!expanded)
     }
@@ -30,10 +31,10 @@ const App = () =>  {
             <CssBaseline />
             <Layout>
                 <Sidebar expanded={expanded} expandAction={handleExpandButtonClick} />
-                {/* <Map prefersDarkMode={prefersDarkMode} expanded={expanded} /> */}
-                <div style={{backgroundColor: 'pink', width: '80%'}}>
+                <Map prefersDarkMode={prefersDarkMode} expanded={expanded} />
+                {/* <div style={{backgroundColor: 'pink', width: '80%'}}>
                     
-                </div>
+                </div> */}
             </Layout>
         </ThemeProvider>
     );

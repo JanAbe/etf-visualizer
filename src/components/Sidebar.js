@@ -26,7 +26,7 @@ const Sidebar = ({ expanded, expandAction }) => {
     const classes = useStyles();
 
     return (
-        <Grid className={[expanded ? classes.expandedWidth : classes.defaultWidth, classes.sidebar].join(' ')}>
+        <Grid className={[classes.sidebar, expanded ? classes.expandedWidth : classes.defaultWidth].join(' ')}>
             <MenuHeader expanded={expanded} expandAction={expandAction} />
             <Divider />
             {/* <GeneralInfo /> */}

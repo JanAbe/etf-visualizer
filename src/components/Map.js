@@ -1,5 +1,5 @@
 import React from 'react';
-import MapGL from 'react-map-gl';
+import ReactMapGL from 'react-map-gl';
 
 // todo: remove this, place in config file, or in env variable.
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoid2ludGVyLW1vb24iLCJhIjoiY2s2dXE1dHI1MGJsZDNma2hlbnI2Z3NvciJ9.3Fomq0bT2ITqqqvCCUi2dg';
@@ -24,12 +24,17 @@ class Map extends React.Component {
         const lightMapURL = 'mapbox://styles/mapbox/light-v10';
         const darkMapURL = 'mapbox://styles/mapbox/dark-v10';
         const prefersDarkMode = this.props.prefersDarkMode;
+        const expanded = this.props.expanded;
+        const defaultWidth = '80%';
+        const expandedWidth = '60%';
+        const transitionSettings = 'width 0.8s';
 
         return (
-            <MapGL
+            <ReactMapGL
+                style={{transition: transitionSettings}}
                 {...this.state.viewport}
                 height='100%'
-                width='80%' // find out way to switch width based on if sidebar expanded or not. Not expanded = 80%, expanded = 60% for example. Match it with sidebar width
+                width={expanded ? expandedWidth : defaultWidth}
                 mapStyle={prefersDarkMode ? darkMapURL : lightMapURL}
                 onViewportChange={this.onViewportChange}
                 mapboxApiAccessToken={MAPBOX_TOKEN}
