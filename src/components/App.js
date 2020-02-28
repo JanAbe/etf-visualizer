@@ -19,11 +19,9 @@ const App = () =>  {
         [prefersDarkMode],
     );
 
-    // how to share state (see if expand button has been pressed) between menuheader component and sidebar component.
     const [expanded, setExpanded] = useState(false); 
 
     const handleExpandButtonClick = () => {
-        console.log("test")
         setExpanded(!expanded)
     }
 
@@ -32,7 +30,7 @@ const App = () =>  {
             <CssBaseline />
             <Layout>
                 <Sidebar expanded={expanded} expandAction={handleExpandButtonClick} />
-                {/* <Map prefersDarkMode={prefersDarkMode} expand={expandCallback()} /> */}
+                {/* <Map prefersDarkMode={prefersDarkMode} expanded={expanded} /> */}
                 <div style={{backgroundColor: 'pink', width: '80%'}}>
                     
                 </div>

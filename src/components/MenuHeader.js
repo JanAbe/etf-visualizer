@@ -25,6 +25,65 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
+/*
+renderExpandButton renders the expand/shrink button
+*/
+const renderExpandButton = (expanded, expandAction, classes) => {
+    /*
+    renderTooltip renders a Tooltip element with the 
+    correct title depending on if the sidebar is expanded
+    or not.
+    */
+    const renderTooltip = (expanded, children) => {
+        const title = expanded ? 'Shrink' : 'Expand';
+
+        return (
+            <Tooltip title={title} placement="right">
+                { children }
+            </Tooltip>
+        );
+    }
+
+    /*
+    renderButton renders a Button element and binds the provided
+    action to the OnClick event.
+    */
+    const renderButton = (classes, expandAction, children) => {
+        return (
+            <Button variant="outlined" className={classes.expandButton} onClick={expandAction}>
+                { children }
+            </Button>
+        );
+    }
+
+    /* 
+    renderIcon renders an Icon element based on if the sidebar
+    has been expanded or not.
+    */
+    const renderIcon = (expanded, classes) => {
+        if (expanded) {
+            return <ArrowBackIos className={classes.expandIcon} width="0" />
+        }
+
+        return <ArrowForwardIos className={classes.expandIcon} width="0" />
+    }
+
+    return (
+        renderTooltip(
+            expanded,
+            renderButton(
+                classes, 
+                expandAction,
+                renderIcon(
+                    expanded,
+                    classes
+                )
+            )
+        )
+    );
+}
+
 const MenuHeader = ({ expanded, expandAction }) => {
     const classes = useStyles();
 
@@ -36,17 +95,7 @@ const MenuHeader = ({ expanded, expandAction }) => {
             <Grid item xs={1}>
                 {/* todo: maybe change colour of tooltip depending on dark/light theme. */}
                 <Grid container className={classes.expandIconWrapper}>
-                    {/* todo: conditionally change title of tooltip, depending on if sidebar is expanded or not */}
-                    <Tooltip title="Expand" placement="right">
-                        <Button variant="outlined" className={classes.expandButton} onClick={expandAction}>
-                            {/* todo: find out nicer way to conditionally render this */}
-                            {expanded ? (
-                                <ArrowBackIos className={classes.expandIcon} width="0" />
-                            ) : (
-                                <ArrowForwardIos className={classes.expandIcon} width="0" />
-                            )}
-                        </Button>
-                    </Tooltip>
+                    { renderExpandButton(expanded, expandAction, classes) }
                 </Grid>
             </Grid>
         </Grid>
