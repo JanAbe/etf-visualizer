@@ -5,7 +5,7 @@ import Sidebar from './Sidebar';
 import { useMediaQuery, createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
 
 
-const App = () =>  {
+const App = ({ data }) =>  {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
     // Todo: learn to understand this piece of code
@@ -31,7 +31,7 @@ const App = () =>  {
             <CssBaseline />
             <Layout>
                 <Sidebar expanded={expanded} expandAction={handleExpandButtonClick} />
-                <Map prefersDarkMode={prefersDarkMode} expanded={expanded} />
+                <Map prefersDarkMode={prefersDarkMode} expanded={expanded} data={data} />
                 {/* <div style={{backgroundColor: 'pink', width: '80%'}}>
                     
                 </div> */}
