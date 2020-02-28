@@ -8,10 +8,11 @@ const MAPBOX_TOKEN = 'pk.eyJ1Ijoid2ludGVyLW1vb24iLCJhIjoiY2s2dXE1dHI1MGJsZDNma2h
 const data = [{sourcePosition: [-122.41669, 37.7853], targetPosition: [-122.41669, 37.781]}];
 // Viewport settings
 const viewState = {
-    latitude: 38.022672,
-    longitude: 9.188889,
-    zoom: 1.52,
-    pitch: 0,
+    latitude: 18.022672,
+    longitude: 19.188889,
+    zoom: 1.92,
+    minZoom: 1.52,
+    pitch: 35,
     bearing: 0
   };
 
@@ -41,18 +42,6 @@ class Map extends React.Component {
         const expandedWidth = '60%';
         const transitionSettings = 'width 0.8s';
 
-        // return (
-        //     <ReactMapGL
-        //         style={{transition: transitionSettings}}
-        //         {...this.state.viewport}
-        //         height='100%'
-        //         width={expanded ? expandedWidth : defaultWidth}
-        //         mapStyle={prefersDarkMode ? darkMapURL : lightMapURL}
-        //         onViewportChange={this.onViewportChange}
-        //         mapboxApiAccessToken={MAPBOX_TOKEN}
-        //     />
-        // );
-
         const layers = [
             new LineLayer({id: 'line-layer', data})
         ];
@@ -68,7 +57,6 @@ class Map extends React.Component {
                     initialViewState={viewState} 
                     controller={true}
                     layers={layers} 
-                    
                 >
                     {prefersDarkMode ? (
                         <StaticMap mapStyle={darkMapURL} mapboxApiAccessToken={MAPBOX_TOKEN} />
