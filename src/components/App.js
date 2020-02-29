@@ -19,6 +19,13 @@ const App = ({ data }) =>  {
         [prefersDarkMode],
     );
 
+    // turn the default white bg and black text into light-grey and dark-grey respectively
+    // when the theme is 'light'
+    if (!prefersDarkMode) {
+        theme.palette.text.primary = "#444";
+        theme.palette.background.default = "#f4f4f4";
+    }
+
     const [expanded, setExpanded] = useState(false); 
 
     // handleExpandButtonClick toggles the expansion of the sidebar

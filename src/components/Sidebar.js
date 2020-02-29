@@ -6,6 +6,7 @@ import DataTable from './DataTable';
 import Searchbar from './Searchbar';
 import SubHeader from './SubHeader';
 import MenuHeader from './MenuHeader';
+import GeneralInfo from './GeneralInfo';
 
 const useStyles = makeStyles(theme => ({
     sidebar: {
@@ -31,7 +32,7 @@ const Sidebar = ({ expanded, expandAction }) => {
             <MenuHeader expanded={expanded} expandAction={expandAction} />
             <SubHeader />
             <Divider />
-            {/* <GeneralInfo /> */}
+            <GeneralInfo />
             {/* <Searchbar /> */}
             <DataTable />
         </Grid>

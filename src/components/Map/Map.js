@@ -11,7 +11,7 @@ const viewState = {
     longitude: 19.188889,
     zoom: 1.92,
     minZoom: 1.72,
-    pitch: 5,
+    pitch: 8,
     bearing: 0
 };
 
@@ -78,15 +78,12 @@ class Map extends React.Component {
             new HexagonLayer({
                 id: 'hexagon-layer',
                 data,
-                pickable: true,
                 extruded: true,
                 colorRange,
                 elevationScale: 300,
                 elevationRange: [0, 3000],
                 elevationLowerPercentile: 0,
                 getPosition: d => d,
-                onHover: this.props.onHover,
-                pickable: Boolean(this.props.onHover),
                 opacity: 1,
                 material,
             })

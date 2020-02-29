@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     menuSubHeaderWrapper: {
@@ -21,7 +21,7 @@ const SubHeader = () => {
         <Grid container className={classes.menuSubHeaderWrapper}>
             <Grid item xs={11} >
                 <p className={classes.subHeader}>
-                    Visualze the Vanguard Emerging Markets ETF as of 31/01/2020
+                    Visualize the Northern Trust Emerging Markets ETF as of 31/01/2020
                 </p>
             </Grid>
         </Grid>

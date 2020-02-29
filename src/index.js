@@ -10,7 +10,6 @@ export function renderToDOM(container) {
     require('d3-request').csv(dataURL, (error, response) => {
         if (!error) {
             const data = response.map(d => [Number(d.lng), Number(d.lat)]);
-            console.log(data);
             ReactDOM.render(<App data={data} />, container)
         }
     });
