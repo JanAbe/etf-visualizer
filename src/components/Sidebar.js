@@ -4,15 +4,16 @@ import { Divider } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'; 
 import DataTable from './DataTable';
 import Searchbar from './Searchbar';
+import SubHeader from './SubHeader';
 import MenuHeader from './MenuHeader';
 
 const useStyles = makeStyles(theme => ({
     sidebar: {
-        paddingLeft: '1.5%',
-        paddingRight: '1.5%',
+        paddingLeft: '2em',
+        paddingRight: '2em',
         boxShadow: '5px 1px 10px 0px rgba(50, 50, 50, 0.3)',
         zIndex: 1,
-        transition: 'width 0.8s'
+        transition: 'width 0.5s'
     },
     defaultWidth: {
         width: '20%'
@@ -28,9 +29,10 @@ const Sidebar = ({ expanded, expandAction }) => {
     return (
         <Grid className={[classes.sidebar, expanded ? classes.expandedWidth : classes.defaultWidth].join(' ')}>
             <MenuHeader expanded={expanded} expandAction={expandAction} />
+            <SubHeader />
             <Divider />
             {/* <GeneralInfo /> */}
-            <Searchbar />
+            {/* <Searchbar /> */}
             <DataTable />
         </Grid>
     );

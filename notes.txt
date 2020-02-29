@@ -15,4 +15,17 @@
             of de sidebar vergroten van huide breedte (20%?) naar bijv. 40% als op 'toon meer info' wordt drukt
             of als op een 'row' wordt gedrukt.
     tooltips toevoegen aan de tableHeaders, uitleggen wat een security is en wat '% of total net assets betekend'
+
+    in de sidebar links een tabel opnemen met daarin de lijst met landen waarin ge"investeerd is, (sorteerbaar van meest naar minst ge"investeerd)
+    als je er dan op klikt, vliegt de kaart naar dat land toe.
+
+    als je inzoomt met je scroll-wheel, de pilaren verkleinen.
+    als je uitzoomt met je scroll-wheel, de pilaren vergroten.
+
+    todo:
+        data van de Vanguard ETF Emerging Markets nuttig maken
+            coordinaten van de landen/steden waar de bedrijven zitten pakken en toevoegen
+                kijken of dit automatisch gedaan kan worden...
+        
+        deze data inlezen en voeden aan de heatmap-layer
 */}

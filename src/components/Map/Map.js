@@ -1,29 +1,47 @@
 import React from 'react';
 import ReactMapGL, { StaticMap } from 'react-map-gl';
-import DeckGL, { HexagonLayer } from 'deck.gl';
+import DeckGL, { HexagonLayer, AmbientLight, PointLight, LightingEffect } from 'deck.gl';
 
 // todo: remove this, place in config file, or in env variable.
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoid2ludGVyLW1vb24iLCJhIjoiY2s2dXE1dHI1MGJsZDNma2hlbnI2Z3NvciJ9.3Fomq0bT2ITqqqvCCUi2dg';
 
 // Viewport settings
-// const viewState = {
-//     latitude: 18.022672,
-//     longitude: 19.188889,
-//     zoom: 1.92,
-//     minZoom: 1.72,
-//     pitch: 35,
-//     bearing: 0
-// };
-const INITIAL_VIEW_STATE = {
-    longitude: -1.4157267858730052,
-    latitude: 52.232395363869415,
-    zoom: 6.6,
-    minZoom: 5,
-    maxZoom: 15,
-    pitch: 40.5,
-    bearing: -27.396674584323023
+const viewState = {
+    latitude: 18.022672,
+    longitude: 19.188889,
+    zoom: 1.92,
+    minZoom: 1.72,
+    pitch: 5,
+    bearing: 0
 };
 
+const ambientLight = new AmbientLight({
+    color: [255, 255, 255],
+    intensity: 1.0
+});
+
+const pointLight1 = new PointLight({
+    color: [255, 255, 255],
+    intensity: 0.8,
+    position: [-0.144528, 49.739968, 80000]
+});
+
+const pointLight2 = new PointLight({
+    color: [255, 255, 255],
+    intensity: 0.8,
+    position: [-3.807751, 54.104682, 8000]
+});
+
+const lightingEffect = new LightingEffect({ambientLight, pointLight1, pointLight2});
+
+const material = {
+    ambient: 0.64,
+    diffuse: 0.6,
+    shininess: 32,
+    specularColor: [51, 51, 51]
+};
+
+// colours of the pillars
 const colorRange = [
     [1, 152, 189],
     [73, 227, 206],
@@ -63,11 +81,14 @@ class Map extends React.Component {
                 pickable: true,
                 extruded: true,
                 colorRange,
-                elevationScale: 250,
+                elevationScale: 300,
                 elevationRange: [0, 3000],
                 elevationLowerPercentile: 0,
                 getPosition: d => d,
-                opacity: 1
+                onHover: this.props.onHover,
+                pickable: Boolean(this.props.onHover),
+                opacity: 1,
+                material,
             })
         ];
     }
@@ -78,25 +99,27 @@ class Map extends React.Component {
         const expanded = this.props.expanded;
         const defaultWidth = '80%';
         const expandedWidth = '60%';
-        const transitionSettings = 'width 0.8s';
+        const transitionSettings = 'width 0.5s';
 
         return (
             <ReactMapGL
                 style={{transition: transitionSettings}}
                 height='100%'
                 width={expanded ? expandedWidth : defaultWidth}
-                mapboxApiAccessToken={MAPBOX_TOKEN}
                 disableTokenWarning={true}
             >
                 <DeckGL  // todo: find out how to get light and darkthemes of the deckGL/staticMap 
-                    // initialViewState={viewState} 
-                    initialViewState={INITIAL_VIEW_STATE}
+                    initialViewState={viewState} 
                     controller={true}
                     layers={this._renderLayers()}
+                    effects={[lightingEffect]} // makes the lighting on the pillars different (adds a shade to the top of the pillars or something)
                 >
                     {prefersDarkMode ? (
-                        <StaticMap mapStyle={darkMapURL} mapboxApiAccessToken={MAPBOX_TOKEN} 
-                        
+                        <StaticMap 
+                            mapStyle={darkMapURL} 
+                            mapboxApiAccessToken={MAPBOX_TOKEN} 
+                            reuseMaps 
+                            preventStyleDiffing={true}
                         />
                     ) : (
                         <StaticMap 

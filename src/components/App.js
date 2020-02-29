@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from './Layout';
-import Map from './Map';
+import Map from './Map/Map';
 import Sidebar from './Sidebar';
 import { useMediaQuery, createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
 

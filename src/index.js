@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 // import './index.css';
 
-// ReactDOM.render(<App />, document.querySelector('#root'));
-
-
 const dataURL = 'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv';
 export function renderToDOM(container) {
     ReactDOM.render(<App />, container)
