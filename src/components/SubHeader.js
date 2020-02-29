@@ -21,7 +21,7 @@ const SubHeader = () => {
         <Grid container className={classes.menuSubHeaderWrapper}>
             <Grid item xs={11} >
                 <p className={classes.subHeader}>
-                    Visualize the Northern Trust Emerging Markets ETF as of 31/01/2020
+                    Visualize the Northern Trust Emerging Markets ETF as of <strong>31/01/2020</strong>
                 </p>
             </Grid>
         </Grid>

@@ -34,7 +34,7 @@ const Sidebar = ({ expanded, expandAction }) => {
             <Divider />
             <GeneralInfo />
             {/* <Searchbar /> */}
-            <DataTable />
+            <DataTable expanded={expanded} />
         </Grid>
     );
 }

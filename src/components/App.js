@@ -38,7 +38,7 @@ const App = ({ data }) =>  {
             <CssBaseline />
             <Layout>
                 <Sidebar expanded={expanded} expandAction={handleExpandButtonClick} />
-                <Map prefersDarkMode={prefersDarkMode} expanded={expanded} data={data} />
+                {/* <Map prefersDarkMode={prefersDarkMode} expanded={expanded} data={data} /> */}
                 {/* <div style={{backgroundColor: 'pink', width: '80%'}}>
                     
                 </div> */}
