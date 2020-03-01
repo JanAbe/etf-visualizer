@@ -1,0 +1,9 @@
+[
+	{"security": "Alibaba Group Holding Ltd Sponsored ADR", "amount_invested": "128.535.753,02", "percentage": "5.8", "coordinates": [121.434101, 31.196037]},
+	{"security": "Tencent Holdings Ltd", "amount_invested": "100.084.321,00", "percentage": "4.5", "coordinates": [113.223329, 23.422181]},
+	{"security": "Taiwan Semiconductor Manufacturing Co Ltd", "amount_invested": "96.843.850,90", "percentage": "4.4", "coordinates": [121.630816, 25.031213]},
+	{"security": "Samsung Electronics Co Ltd", "amount_invested": "82.173.731,73", "percentage": "3.7", "coordinates": [127.053175, 37.544949]},
+	{"security": "China Construction Bank Corp Class H", "amount_invested": "26.818.692,16", "percentage": "1.2", "coordinates": [116.465800, 40.015492]},
+	{"security": "Naspers Ltd Class N", "amount_invested": "26.459.042,22", "percentage": "1.2", "coordinates": [18.968336, -33.945183]},
+	{"security": "Ping An Insurance Group Co of China Ltd", "amount_invested": "23.179.604,66", "percentage": "1.1", "coordinates": [116.32250, 39.806057]}
+]

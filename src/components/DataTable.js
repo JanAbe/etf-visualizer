@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Box, Grid } from '@material-ui/core';
 
-
 const createData = (security, amountInvested, percentage) => {
     return { security, amountInvested, percentage };
 }

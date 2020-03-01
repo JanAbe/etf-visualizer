@@ -23,7 +23,6 @@ const App = ({ data }) =>  {
     // when the theme is 'light'
     if (!prefersDarkMode) {
         theme.palette.text.primary = "#444";
-        theme.palette.background.default = "#f4f4f4";
     }
 
     const [expanded, setExpanded] = useState(false); 
