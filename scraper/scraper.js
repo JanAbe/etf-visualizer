@@ -23,15 +23,19 @@ or if the html markup is different
 	containing rows of company names.
 	For each row it calls the getCompanyInfo method
 */
-const main = (filePath) => {
+const main = (outPath, inPath) => {
 	const lineReader = readline.createInterface({
-		input: fs.createReadStream(filePath)
+		input: fs.createReadStream(inPath)
 	});
 
 	lineReader.on('line', (line) => {
-		getCompanyInfo(line)
+		getCompanyInfo(line.trim())
 		.then(data => {
-			console.log(data);
+			fs.appendFile(outPath, `${line}, address: ${data}\n`, (err) => {
+				if (err) {
+					console.log(err);
+				}
+			});
 		})
 		.catch(err => {
 			console.error(err);
@@ -51,7 +55,7 @@ const getCompanyInfo = async (companyName) => {
 		const companyInfo = getCompanyInfoFromResponse(companyProfileResponse);
 		return companyInfo;
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
@@ -83,4 +87,4 @@ const profileURL = (symbol) => {
 	return `https://finance.yahoo.com/quote/${symbol}/profile?p=${symbol}`;
 }
 
-main('%PUBLIC_URL%/../scraper/test.txt');
+main('%PUBLIC_URL%/../scraper/results.txt', '%PUBLIC_URL%/../scraper/holdings.txt');
