@@ -40,6 +40,7 @@ const App = ({ data }) =>  {
                 {/* <div style={{backgroundColor: 'pink', width: '80%'}}>
                     
                 </div> */}
+                <div id="tooltip" style={{position: 'absolute', zIndex: 1, pointerEvents: 'none'}}></div>
             </Layout>
         </ThemeProvider>
     );

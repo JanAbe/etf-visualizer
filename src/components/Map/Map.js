@@ -25,6 +25,19 @@ class Map extends React.Component {
         this.setState({viewport: viewport});
     }
 
+    setTooltip = (object, x, y) => {
+        // object doesn't contain any data. How do i access the data from the hovered 
+        const el = document.getElementById('tooltip');
+        if (object) {
+            el.innerHTML = object.security;
+            el.style.display = 'block';
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+        } else {
+            el.style.display = 'none';
+        }
+    }
+
     // Renders the heatMapLayer on top of the map
     _renderLayers() {
         const {data = this.props.data, intensity = 1, threshold = 0.03, radiusPixels = 30} = this.props;
@@ -33,13 +46,17 @@ class Map extends React.Component {
             new HeatmapLayer({
                 id: 'heatmp-layer',
                 data,
-                pickable: true,
                 getPosition: d => [d['coordinates'][0], d['coordinates'][1]],
                 getWeight: d => Number(d['percentage']),
                 radiusPixels,
                 intensity,
                 threshold,
-              })
+                pickable: true,
+                onHover: info => {
+                    console.log(info)
+                    this.setTooltip(info, info.x, info.y)
+                }
+            })
         ];
     }
 
