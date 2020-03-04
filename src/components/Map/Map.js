@@ -4,7 +4,7 @@ import DeckGL, { HeatmapLayer } from 'deck.gl';
 
 // todo: remove this, place in config file, or in env variable.
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoid2ludGVyLW1vb24iLCJhIjoiY2s2dXE1dHI1MGJsZDNma2hlbnI2Z3NvciJ9.3Fomq0bT2ITqqqvCCUi2dg';
-const DATA_URL = './data.json';
+// const DATA_URL = './data.json';
   
 class Map extends React.Component {
     constructor(props) {
@@ -27,18 +27,18 @@ class Map extends React.Component {
 
     // Renders the heatMapLayer on top of the map
     _renderLayers() {
-        const {data = DATA_URL, intensity = 1, threshold = 0.03, radiusPixels = 30} = this.props;
+        const {data = this.props.data, intensity = 1, threshold = 0.03, radiusPixels = 30} = this.props;
 
         return [
             new HeatmapLayer({
                 id: 'heatmp-layer',
                 data,
-                pickable: false,
+                pickable: true,
                 getPosition: d => [d['coordinates'][0], d['coordinates'][1]],
                 getWeight: d => Number(d['percentage']),
                 radiusPixels,
                 intensity,
-                threshold
+                threshold,
               })
         ];
     }

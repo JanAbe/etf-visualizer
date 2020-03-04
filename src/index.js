@@ -2,4 +2,5 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+const dataFile = './data.json';
+ReactDOM.render(<App data={dataFile} />, document.querySelector('#root'));

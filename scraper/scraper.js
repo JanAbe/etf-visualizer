@@ -75,6 +75,9 @@ const getCompanyInfoFromResponse = (response) => {
 		};
 	});
 
+	if (addressParts.length === 4) {
+		addressParts.splice(0, 1)
+	}
 	const address = addressParts.join(', ').trim();
 	return address;
 }
@@ -87,4 +90,4 @@ const profileURL = (symbol) => {
 	return `https://finance.yahoo.com/quote/${symbol}/profile?p=${symbol}`;
 }
 
-main('%PUBLIC_URL%/../scraper/results.txt', '%PUBLIC_URL%/../scraper/holdings.txt');
+main('%PUBLIC_URL%/../scraper/results1.txt', '%PUBLIC_URL%/../scraper/holdings.txt');
