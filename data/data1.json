@@ -1,0 +1,46 @@
+[
+	{
+		"Ticker": "BABA",
+		"Name": "ALIBABA GROUP HOLDING ADR REPRESEN",
+		"Asset Class": "Equity",
+		"Weight": "5.57",
+		"Price": "207.41",
+		"Shares": "15,182,400.00",
+		"Market Value": "3,148,981,584.00",
+		"Notional Value": "3,148,981,584.00",
+		"Sector": "Consumer Discretionary",
+		"SEDOL": "BP41ZD1",
+		"ISIN": "US01609W1027",
+		"Exchange": "New York Stock Exchange Inc.",
+		"Location": "China",
+		"Currency": "USD",
+		"Market Currency": "USD",
+		"FX Rate": "1.00",
+		"Coordinates": [
+			120.15507,
+			30.2741
+		]
+	},
+	{
+		"Ticker": "700",
+		"Name": "TENCENT HOLDINGS LTD",
+		"Asset Class": "Equity",
+		"Weight": "4.49",
+		"Price": "50.71",
+		"Shares": "50,133,700.00",
+		"Market Value": "2,542,335,774.50",
+		"Notional Value": "2,542,335,774.50",
+		"Sector": "Communication",
+		"SEDOL": "BMMV2K8",
+		"ISIN": "KYG875721634",
+		"Exchange": "Hong Kong Exchanges And Clearing Ltd",
+		"Location": "China",
+		"Currency": "USD",
+		"Market Currency": "HKD",
+		"FX Rate": "7.77",
+		"Coordinates": [
+			103,
+			35
+		]
+	}
+]
