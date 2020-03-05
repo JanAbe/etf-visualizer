@@ -38,24 +38,35 @@ class Map extends React.Component {
         }
     }
 
+    _renderTooltip() {
+        const {hoveredObject, pointerX, pointerY} = this.state || {};
+        console.log(hoveredObject);
+        return hoveredObject && (
+            <div style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX, top: pointerY}}>
+                { hoveredObject.message }
+            </div>
+        );
+    }
+
     // Renders the heatMapLayer on top of the map
     _renderLayers() {
         const {data = this.props.data, intensity = 1, threshold = 0.03, radiusPixels = 30} = this.props;
 
         return [
             new HeatmapLayer({
-                id: 'heatmp-layer',
+                id: 'etf-visualizer-map',
                 data,
-                getPosition: d => [d['coordinates'][0], d['coordinates'][1]],
-                getWeight: d => Number(d['percentage']),
+                getPosition: d => [d['Coordinates'][0], d['Coordinates'][1]],
+                getWeight: d => Number(d['Weight']),
                 radiusPixels,
                 intensity,
                 threshold,
                 pickable: true,
-                onHover: info => {
-                    console.log(info)
-                    this.setTooltip(info, info.x, info.y)
-                }
+                onHover: info => this.setState({
+                    hoveredObject: info.object,
+                    pointerX: info.x,
+                    pointerY: info.y
+                })
             })
         ];
     }
@@ -66,7 +77,7 @@ class Map extends React.Component {
         const expanded = this.props.expanded;
         const defaultWidth = '80%';
         const expandedWidth = '60%';
-        const transitionSettings = 'width 0.5s';
+        const transitionSettings = 'width 0.3s';
 
         return (
             <ReactMapGL
@@ -95,6 +106,7 @@ class Map extends React.Component {
                             preventStyleDiffing={true}
                         />
                     )}
+                    { this._renderTooltip() }
                 </DeckGL>
             </ReactMapGL>
         );

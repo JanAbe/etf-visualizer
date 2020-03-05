@@ -2,6 +2,10 @@ const readline = require('readline');
 const fs = require('fs');
 const axios = require('axios').default;
 const cheerio = require('cheerio');
+const csv = require('csvtojson');
+const mbxGeo = require('@mapbox/mapbox-sdk/services/geocoding');
+const MAPBOX_TOKEN = 'pk.eyJ1Ijoid2ludGVyLW1vb24iLCJhIjoiY2s2dXE1dHI1MGJsZDNma2hlbnI2Z3NvciJ9.3Fomq0bT2ITqqqvCCUi2dg';
+const geocodingClient = mbxGeo({ accessToken: MAPBOX_TOKEN });
 
 /*
 todo:
@@ -17,6 +21,44 @@ or if the html markup is different
 */
 
 
+const csvToJSON = (csvPath, jsonPath) => {
+	const readStream = fs.createReadStream(csvPath);
+	const writeStream = fs.createWriteStream(jsonPath);
+	readStream.pipe(csv()).pipe(writeStream);
+}
+
+const getCoordinatesFromLocation = async (location) => {
+	const response = await geocodingClient.forwardGeocode({
+		query: location,
+		limit: 1	
+	})
+	.send()
+
+	const features = response.body.features[0];
+	if (!features) {
+		console.log('no coords found: ' + location);
+		return '';
+	}
+
+	return features.geometry.coordinates;
+}
+
+const addCoordinates = (jsonPath) => {
+	fs.readFile(jsonPath, async (err, data) => {
+		if (err) console.log(err);
+
+		const json = JSON.parse(data);
+
+		for (const obj of json) {
+			const coords = await getCoordinatesFromLocation(obj.Location);
+			obj['Coordinates'] = coords;
+		}
+
+		fs.writeFile(jsonPath, JSON.stringify(json), (err) => {
+			if (err) console.log(err);
+		})
+	})
+}
 
 /* 	
 	main takes a path to a file
@@ -90,4 +132,6 @@ const profileURL = (symbol) => {
 	return `https://finance.yahoo.com/quote/${symbol}/profile?p=${symbol}`;
 }
 
-main('%PUBLIC_URL%/../scraper/results1.txt', '%PUBLIC_URL%/../scraper/holdings.txt');
+// main('%PUBLIC_URL%/../scraper/results1.txt', '%PUBLIC_URL%/../scraper/holdings.txt');
+// csvToJSON('%PUBLIC_URL%/../data/IEMG_holdings.csv', '%PUBLIC_URL%/data.json');
+addCoordinates('%PUBLIC_URL%/../data/data.json');
