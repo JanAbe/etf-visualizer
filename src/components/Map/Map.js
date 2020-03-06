@@ -50,7 +50,7 @@ class Map extends React.Component {
 
     // Renders the heatMapLayer on top of the map
     _renderLayers() {
-        const {data = this.props.data, intensity = 1, threshold = 0.03, radiusPixels = 30} = this.props;
+        const {data = this.props.data, intensity = 2, threshold = 0.02, radiusPixels = 30, opacity=0.75} = this.props;
 
         return [
             new HeatmapLayer({
@@ -62,11 +62,14 @@ class Map extends React.Component {
                 intensity,
                 threshold,
                 pickable: true,
-                onHover: info => this.setState({
+                opacity,
+                onHover: info => {
+                    console.log(info)
+                    this.setState({
                     hoveredObject: info.object,
                     pointerX: info.x,
                     pointerY: info.y
-                })
+                })}
             })
         ];
     }

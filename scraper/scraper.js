@@ -145,7 +145,7 @@ const getCoordinatesFromLocation = async (location, country) => {
 		// get the first result only.
 		const features = response.body.features[0];
 		if (!features) {
-			console.log('no coords found for: ' + location);
+			console.log('no coords found for: ' + country);
 			return '';
 		}
 
@@ -160,7 +160,7 @@ const getCoordinatesFromLocation = async (location, country) => {
 		
 		// because we are only interested in the first result,
 		// the result that has the highest chance of being the coordinates we want,
-		// get the first result only.
+		// we get the first result only.
 		const features = response.body.features[0];
 		if (!features) {
 			console.log('no coords found for: ' + location);

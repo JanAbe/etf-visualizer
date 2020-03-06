@@ -42,5 +42,203 @@
 			103,
 			35
 		]
+	},
+	{
+		"Ticker": "2330",
+		"Name": "TAIWAN SEMICONDUCTOR MANUFACTURING",
+		"Asset Class": "Equity",
+		"Weight": "4.02",
+		"Price": "10.58",
+		"Shares": "214,900,000.00",
+		"Market Value": "2,273,373,204.94",
+		"Notional Value": "2,273,373,204.94",
+		"Sector": "Information Technology",
+		"SEDOL": "6889106",
+		"ISIN": "TW0002330008",
+		"Exchange": "Taiwan Stock Exchange",
+		"Location": "Taiwan",
+		"Currency": "USD",
+		"Market Currency": "TWD",
+		"FX Rate": "30.01",
+		"Coordinates": [
+			121,
+			24
+		]
+	},
+	{
+		"Ticker": "005930",
+		"Name": "SAMSUNG ELECTRONICS LTD",
+		"Asset Class": "Equity",
+		"Weight": "3.41",
+		"Price": "46.35",
+		"Shares": "41,661,767.00",
+		"Market Value": "1,930,947,788.67",
+		"Notional Value": "1,930,947,788.67",
+		"Sector": "Information Technology",
+		"SEDOL": "6771720",
+		"ISIN": "KR7005930003",
+		"Exchange": "Korea Exchange (Stock Market)",
+		"Location": "Korea (South)",
+		"Currency": "USD",
+		"Market Currency": "KRW",
+		"FX Rate": "1,195.30",
+		"Coordinates": [
+			128.69193,
+			35.23784
+		]
+	},
+	{
+		"Ticker": "939",
+		"Name": "CHINA CONSTRUCTION BANK CORP H",
+		"Asset Class": "Equity",
+		"Weight": "1.23",
+		"Price": "0.83",
+		"Shares": "836,043,000.00",
+		"Market Value": "694,057,191.58",
+		"Notional Value": "694,057,191.58",
+		"Sector": "Financials",
+		"SEDOL": "B0LMTQ3",
+		"ISIN": "CNE1000002H1",
+		"Exchange": "Hong Kong Exchanges And Clearing Ltd",
+		"Location": "China",
+		"Currency": "USD",
+		"Market Currency": "HKD",
+		"FX Rate": "7.77",
+		"Coordinates": [
+			103,
+			35
+		]
+	},
+	{
+		"Ticker": "NPN",
+		"Name": "NASPERS LIMITED N LTD",
+		"Asset Class": "Equity",
+		"Weight": "1.09",
+		"Price": "160.30",
+		"Shares": "3,863,053.00",
+		"Market Value": "619,241,026.56",
+		"Notional Value": "619,241,026.56",
+		"Sector": "Consumer Discretionary",
+		"SEDOL": "6622691",
+		"ISIN": "ZAE000015889",
+		"Exchange": "Johannesburg Stock Exchange",
+		"Location": "South Africa",
+		"Currency": "USD",
+		"Market Currency": "ZAR",
+		"FX Rate": "15.28",
+		"Coordinates": [
+			25.484753,
+			-33.95871
+		]
+	},
+	{
+		"Ticker": "2318",
+		"Name": "PING AN INSURANCE (GROUP) CO OF CH",
+		"Asset Class": "Equity",
+		"Weight": "0.97",
+		"Price": "11.26",
+		"Shares": "48,737,000.00",
+		"Market Value": "548,875,410.26",
+		"Notional Value": "548,875,410.26",
+		"Sector": "Financials",
+		"SEDOL": "B01FLR7",
+		"ISIN": "CNE1000003X6",
+		"Exchange": "Hong Kong Exchanges And Clearing Ltd",
+		"Location": "China",
+		"Currency": "USD",
+		"Market Currency": "HKD",
+		"FX Rate": "7.77",
+		"Coordinates": [
+			103,
+			35
+		]
+	},
+	{
+		"Ticker": "RELIANCE",
+		"Name": "RELIANCE INDUSTRIES LTD",
+		"Asset Class": "Equity",
+		"Weight": "0.81",
+		"Price": "18.32",
+		"Shares": "24,957,385.00",
+		"Market Value": "457,232,844.88",
+		"Notional Value": "457,232,844.88",
+		"Sector": "Energy",
+		"SEDOL": "6099626",
+		"ISIN": "INE002A01018",
+		"Exchange": "National Stock Exchange Of India",
+		"Location": "India",
+		"Currency": "USD",
+		"Market Currency": "INR",
+		"FX Rate": "73.30",
+		"Coordinates": [
+			77,
+			21
+		]
+	},
+	{
+		"Ticker": "HDFC",
+		"Name": "HOUSING DEVELOPMENT FINANCE CORPOR",
+		"Asset Class": "Equity",
+		"Weight": "0.76",
+		"Price": "29.90",
+		"Shares": "14,402,767.00",
+		"Market Value": "430,604,367.19",
+		"Notional Value": "430,604,367.19",
+		"Sector": "Financials",
+		"SEDOL": "6171900",
+		"ISIN": "INE001A01036",
+		"Exchange": "National Stock Exchange Of India",
+		"Location": "India",
+		"Currency": "USD",
+		"Market Currency": "INR",
+		"FX Rate": "73.30",
+		"Coordinates": [
+			77,
+			21
+		]
+	},
+	{
+		"Ticker": "941",
+		"Name": "CHINA MOBILE LTD",
+		"Asset Class": "Equity",
+		"Weight": "0.74",
+		"Price": "7.81",
+		"Shares": "53,745,000.00",
+		"Market Value": "419,888,216.74",
+		"Notional Value": "419,888,216.74",
+		"Sector": "Communication",
+		"SEDOL": "6073556",
+		"ISIN": "HK0941009539",
+		"Exchange": "Hong Kong Exchanges And Clearing Ltd",
+		"Location": "China",
+		"Currency": "USD",
+		"Market Currency": "HKD",
+		"FX Rate": "7.77",
+		"Coordinates": [
+			103,
+			35
+		]
+	},
+	{
+		"Ticker": "1398",
+		"Name": "INDUSTRIAL AND COMMERCIAL BANK OF",
+		"Asset Class": "Equity",
+		"Weight": "0.70",
+		"Price": "0.70",
+		"Shares": "565,716,000.00",
+		"Market Value": "394,643,248.60",
+		"Notional Value": "394,643,248.60",
+		"Sector": "Financials",
+		"SEDOL": "B1G1QD8",
+		"ISIN": "CNE1000003G1",
+		"Exchange": "Hong Kong Exchanges And Clearing Ltd",
+		"Location": "China",
+		"Currency": "USD",
+		"Market Currency": "HKD",
+		"FX Rate": "7.77",
+		"Coordinates": [
+			103,
+			35
+		]
 	}
 ]

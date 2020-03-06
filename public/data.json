@@ -17,8 +17,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			120.15507,
+			30.2741
 		]
 	},
 	{
@@ -127,8 +127,8 @@
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
 		"Coordinates": [
-			24,
-			-29
+			25.484753,
+			-33.95871
 		]
 	},
 	{
@@ -325,8 +325,8 @@
 		"Market Currency": "INR",
 		"FX Rate": "73.30",
 		"Coordinates": [
-			77,
-			21
+			77.659441,
+			12.840956
 		]
 	},
 	{
@@ -435,8 +435,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			116.295433,
+			40.049497
 		]
 	},
 	{
@@ -501,8 +501,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			116.39139,
+			39.905
 		]
 	},
 	{
@@ -610,10 +610,7 @@
 		"Currency": "USD",
 		"Market Currency": "INR",
 		"FX Rate": "73.30",
-		"Coordinates": [
-			77,
-			21
-		]
+		"Coordinates": [ 77, 21 ]
 	},
 	{
 		"Ticker": "PETR4",
@@ -677,8 +674,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			116.307314,
+			39.977191
 		]
 	},
 	{
@@ -743,8 +740,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			116.39139,
+			39.905
 		]
 	},
 	{
@@ -897,8 +894,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			116.29214,
+			39.95812
 		]
 	},
 	{
@@ -1073,8 +1070,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			121.503032,
+			31.236641
 		]
 	},
 	{
@@ -1314,10 +1311,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			103,
-			35
-		]
+		"Coordinates": [ 103, 35]
 	},
 	{
 		"Ticker": "005380",
@@ -1666,10 +1660,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			-78,
-			-8
-		]
+		"Coordinates": [ -78, -8]
 	},
 	{
 		"Ticker": "055550",
@@ -2722,10 +2713,7 @@
 		"Currency": "USD",
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
-		"Coordinates": [
-			24,
-			-29
-		]
+		"Coordinates": [24, -29]
 	},
 	{
 		"Ticker": "2601",
@@ -3383,8 +3371,8 @@
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
 		"Coordinates": [
-			24,
-			-29
+			27.110038,
+			-26.704053
 		]
 	},
 	{
@@ -3492,10 +3480,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			103,
-			35
-		]
+		"Coordinates": [ 103, 35]
 	},
 	{
 		"Ticker": "1101",
@@ -3823,8 +3808,8 @@
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
 		"Coordinates": [
-			24,
-			-29
+			28.137098,
+			-26.117609
 		]
 	},
 	{
@@ -4064,10 +4049,7 @@
 		"Currency": "USD",
 		"Market Currency": "PLN",
 		"FX Rate": "3.84",
-		"Coordinates": [
-			19,
-			52
-		]
+		"Coordinates": [19, 52]
 	},
 	{
 		"Ticker": "ULTRACEMCO",
@@ -4350,10 +4332,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			103,
-			35
-		]
+		"Coordinates": [ 103, 35]
 	},
 	{
 		"Ticker": "2912",
@@ -4395,8 +4374,8 @@
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
 		"Coordinates": [
-			24,
-			-29
+			28.048098,
+			-26.102036
 		]
 	},
 	{
@@ -4835,8 +4814,8 @@
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
 		"Coordinates": [
-			24,
-			-29
+			28.060356,
+			-26.079834
 		]
 	},
 	{
@@ -4945,8 +4924,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			116.39139,
+			39.905
 		]
 	},
 	{
@@ -5077,8 +5056,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			37.61667,
-			55.75
+			37.659252,
+			55.738379
 		]
 	},
 	{
@@ -5252,10 +5231,7 @@
 		"Currency": "USD",
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
-		"Coordinates": [
-			24,
-			-29
-		]
+		"Coordinates":[24, -29]
 	},
 	{
 		"Ticker": "BBSE3",
@@ -5318,10 +5294,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			103,
-			35
-		]
+		"Coordinates": [ 103, 35]
 	},
 	{
 		"Ticker": "POWERGRID",
@@ -5692,10 +5665,7 @@
 		"Currency": "USD",
 		"Market Currency": "PHP",
 		"FX Rate": "50.69",
-		"Coordinates": [
-			123.01667,
-			11.33333
-		]
+		"Coordinates": [123.01667, 11.33333]
 	},
 	{
 		"Ticker": "SUNPHARMA",
@@ -5737,8 +5707,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			121.4160875,
+			31.1993705
 		]
 	},
 	{
@@ -5847,8 +5817,8 @@
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
 		"Coordinates": [
-			24,
-			-29
+			27.619428,
+			-28.317975
 		]
 	},
 	{
@@ -5891,8 +5861,8 @@
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
 		"Coordinates": [
-			24,
-			-29
+			29.804005,
+			-24.713129
 		]
 	},
 	{
@@ -6044,10 +6014,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			-64,
-			-34
-		]
+		"Coordinates": [-64, -34]
 	},
 	{
 		"Ticker": "BRDT3",
@@ -6110,10 +6077,7 @@
 		"Currency": "USD",
 		"Market Currency": "QAR",
 		"FX Rate": "3.64",
-		"Coordinates": [
-			51.21277,
-			25.26954
-		]
+		"Coordinates": [51.21277, 25.26954]
 	},
 	{
 		"Ticker": "1211",
@@ -6177,8 +6141,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			116.39139,
+			39.905
 		]
 	},
 	{
@@ -6243,8 +6207,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			121.511348,
+			31.233539
 		]
 	},
 	{
@@ -6330,10 +6294,7 @@
 		"Currency": "USD",
 		"Market Currency": "PLN",
 		"FX Rate": "3.84",
-		"Coordinates": [
-			19,
-			52
-		]
+		"Coordinates": [19, 52]
 	},
 	{
 		"Ticker": "IQCD",
@@ -6485,8 +6446,8 @@
 		"Market Currency": "RUB",
 		"FX Rate": "65.43",
 		"Coordinates": [
-			37.61667,
-			55.75
+			50.145065,
+			53.199377
 		]
 	},
 	{
@@ -6573,8 +6534,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			37.61667,
-			55.75
+			37.724995,
+			55.586785
 		]
 	},
 	{
@@ -6902,10 +6863,7 @@
 		"Currency": "USD",
 		"Market Currency": "IDR",
 		"FX Rate": "14,281.50",
-		"Coordinates": [
-			118,
-			-2
-		]
+		"Coordinates": [118, -2]
 	},
 	{
 		"Ticker": "1099",
@@ -7255,8 +7213,8 @@
 		"Market Currency": "PHP",
 		"FX Rate": "50.69",
 		"Coordinates": [
-			123.01667,
-			11.33333
+			121.063284,
+			14.583643
 		]
 	},
 	{
@@ -7849,8 +7807,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			113.25898,
+			23.1288
 		]
 	},
 	{
@@ -8267,8 +8225,8 @@
 		"Market Currency": "INR",
 		"FX Rate": "73.30",
 		"Coordinates": [
-			77,
-			21
+			72.850899,
+			19.160954
 		]
 	},
 	{
@@ -8597,8 +8555,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			116.39139,
+			39.905
 		]
 	},
 	{
@@ -8641,8 +8599,8 @@
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
 		"Coordinates": [
-			24,
-			-29
+			20.067123,
+			-33.939438
 		]
 	},
 	{
@@ -8860,10 +8818,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			-78,
-			-8
-		]
+		"Coordinates": [ -78, -8]
 	},
 	{
 		"Ticker": "GODREJCP",
@@ -8992,10 +8947,7 @@
 		"Currency": "USD",
 		"Market Currency": "MYR",
 		"FX Rate": "4.21",
-		"Coordinates": [
-			111.55,
-			2.31667
-		]
+		"Coordinates": [111.55, 2.31667]
 	},
 	{
 		"Ticker": "021240",
@@ -9586,10 +9538,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			54,
-			23.78333
-		]
+		"Coordinates": [54, 23.78333]
 	},
 	{
 		"Ticker": "CHMF",
@@ -9653,8 +9602,8 @@
 		"Market Currency": "RUB",
 		"FX Rate": "65.43",
 		"Coordinates": [
-			37.61667,
-			55.75
+			39.796127,
+			64.552137
 		]
 	},
 	{
@@ -9697,8 +9646,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			121.46667,
+			31.16667
 		]
 	},
 	{
@@ -11193,8 +11142,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			-78,
-			-8
+			-75.2344,
+			-13.9736
 		]
 	},
 	{
@@ -11236,10 +11185,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			103,
-			35
-		]
+		"Coordinates": [ 103, 35]
 	},
 	{
 		"Ticker": "URC",
@@ -11390,10 +11336,7 @@
 		"Currency": "USD",
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
-		"Coordinates": [
-			103,
-			35
-		]
+		"Coordinates": [ 103, 35]
 	},
 	{
 		"Ticker": "2492",
@@ -11501,8 +11444,8 @@
 		"Market Currency": "MXN",
 		"FX Rate": "19.23",
 		"Coordinates": [
-			-102.36667,
-			23.31667
+			-100.325598,
+			25.64772
 		]
 	},
 	{
@@ -12029,8 +11972,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			121.46667,
+			31.16667
 		]
 	},
 	{
@@ -12182,10 +12125,7 @@
 		"Currency": "USD",
 		"Market Currency": "PLN",
 		"FX Rate": "3.84",
-		"Coordinates": [
-			19,
-			52
-		]
+		"Coordinates": [19, 52]
 	},
 	{
 		"Ticker": "1476",
@@ -12733,8 +12673,8 @@
 		"Market Currency": "ZAR",
 		"FX Rate": "15.28",
 		"Coordinates": [
-			24,
-			-29
+			18.6939,
+			-33.983906
 		]
 	},
 	{
@@ -12909,8 +12849,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			116.270306,
+			40.040265
 		]
 	},
 	{
@@ -13327,8 +13267,8 @@
 		"Market Currency": "USD",
 		"FX Rate": "1.00",
 		"Coordinates": [
-			103,
-			35
+			121.46667,
+			31.16667
 		]
 	},
 	{
