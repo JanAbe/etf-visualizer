@@ -85,6 +85,7 @@ class Map extends React.Component {
                     onViewportChange={this.onViewportChange}
                     controller={true}
                     layers={this._renderLayers()}
+                    disableTokenWarning={true}
                 >
                     {prefersDarkMode ? (
                         <StaticMap 

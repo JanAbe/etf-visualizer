@@ -66,6 +66,12 @@ const useStyles = makeStyles(theme => ({
 	colorDark6: {
 		backgroundColor: 'rgb(0, 51, 0)'
 	},
+	leftMargin: {
+		marginLeft: '1em'
+	},
+	rightMargin: {
+		marginRight: '1em'
+	}
 }));
 
 const renderLegend = (prefersDarkMode, classes) => {
@@ -98,18 +104,18 @@ const Legend = ({ prefersDarkMode }) => {
 	const classes = useStyles();
 
 	return (
-		<Paper>
+		<Paper style={{marginBottom: '1em'}}>
 			<div className={classes.wrapper}>
 				{ renderLegend(prefersDarkMode, classes) }
 			</div>
 			<div className={classes.legendTextWrapper}>
-				<div className={classes.legendText}>
+				<div className={[classes.legendText, classes.leftMargin].join(' ')}>
 					<ArrowBack fontSize='small' />
 					<p className={classes.leftText}>
 						Less Money Invested
 					</p>
 				</div>
-				<div className={classes.legendText}>
+				<div className={[classes.legendText, classes.rightMargin].join(' ')}>
 					<p className={classes.rightText}>
 						More Money Invested
 					</p>

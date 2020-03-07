@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: '5px 1px 10px 0px rgba(50, 50, 50, 0.3)',
         zIndex: 1,
         transition: 'width 0.3s',
+        overflowY: 'scroll'
     },
     defaultWidth: {
         width: '20%'
