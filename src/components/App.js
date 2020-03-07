@@ -4,7 +4,7 @@ import Map from './Map/Map';
 import Sidebar from './Sidebar';
 import { useMediaQuery, createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
 
-const App = ({ data }) =>  {
+const App = ({ data, dataSource }) =>  {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
     // Todo: learn to understand this piece of code
@@ -24,7 +24,7 @@ const App = ({ data }) =>  {
         theme.palette.text.primary = "#444";
     }
 
-    const [expanded, setExpanded] = useState(false); 
+    const [expanded, setExpanded] = useState(true); 
 
     // handleExpandButtonClick toggles the expansion of the sidebar
     const handleExpandButtonClick = () => {
@@ -35,12 +35,8 @@ const App = ({ data }) =>  {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Layout>
-                <Sidebar expanded={expanded} expandAction={handleExpandButtonClick} />
-                <Map prefersDarkMode={prefersDarkMode} expanded={expanded} data={data} />
-                {/* <div style={{backgroundColor: 'pink', width: '80%'}}>
-                    
-                </div> */}
-                <div id="tooltip" style={{position: 'absolute', zIndex: 1, pointerEvents: 'none'}}></div>
+                <Sidebar data={data} prefersDarkMode={prefersDarkMode} expanded={expanded} expandAction={handleExpandButtonClick} />
+                <Map prefersDarkMode={prefersDarkMode} expanded={expanded} dataSource={dataSource} />
             </Layout>
         </ThemeProvider>
     );

@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
 	},
 	noMarginTop: {
 		paddingTop: '0'
+	},
+	biggerFont: {
+		fontSize: '1.1em'
 	}
 }));
 
@@ -21,10 +24,10 @@ const GeneralInfoSection = ({ header, data, firstSection=false }) => {
 
 	return (
 		<Grid item xs={11} className={[classes.section, firstSection ? classes.noMarginTop : classes.marginTop].join(' ')}>
-			<div>
+			<div className={classes.biggerFont}>
 				{ header }:
 			</div>
-			<div>
+			<div className={classes.biggerFont}>
 				{ data }
 			</div>
 		</Grid>

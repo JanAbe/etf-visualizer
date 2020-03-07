@@ -1,55 +1,66 @@
 import React from 'react';
-import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Grid } from '@material-ui/core';
+import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Grid, Paper } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    dataTable: {
+        overflowX: 'auto',
+        whiteSpace: 'nowrap'
+    }
+}));
 
 const DataTable = ({ data, expanded }) => {
+    const classes = useStyles();
+
     return (
-        <Grid container>
-            <Grid item xs={12}>
-                <TableContainer>
-                    <Table size="small">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>
-                                    Ticker
-                                </TableCell>
-                                <TableCell>
-                                    Security
-                                </TableCell>
-                                {expanded && 
-                                    <TableCell align="center">
-                                        Amount Invested 
-                                    </TableCell>
-                                }
-                                <TableCell align="center">
-                                    % of Total
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {data.map(row => (
+        <Paper>
+            <Grid container>
+                <Grid item xs={12}>
+                    <TableContainer>
+                        <Table className={classes.dataTable}>
+                            <TableHead>
                                 <TableRow>
                                     <TableCell>
-                                        {row.ticker}
+                                        Ticker
                                     </TableCell>
                                     <TableCell>
-                                        {/* todo: when hovering with mouse over a row, enlarge that row and show the full name */}
-                                        {row.security}
+                                        Security
                                     </TableCell>
-                                    {expanded &&
+                                    {expanded && 
                                         <TableCell align="center">
-                                            ${row.amountInvested}
+                                            Market Value
                                         </TableCell>
                                     }
                                     <TableCell align="center">
-                                        {row.percentage}%
+                                        % of Total
                                     </TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {data.slice(0, 10).map(row => (
+                                    <TableRow hover>
+                                        <TableCell>
+                                            {row['Ticker']}
+                                        </TableCell>
+                                        <TableCell>
+                                            {row['Name']}
+                                        </TableCell>
+                                        {expanded &&
+                                            <TableCell align="center">
+                                                ${row['Market Value']}
+                                            </TableCell>
+                                        }
+                                        <TableCell align="center">
+                                            {row['Weight']}%
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Grid>
             </Grid>
-        </Grid>
+        </Paper>
     );
 }
 

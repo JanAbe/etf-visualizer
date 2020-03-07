@@ -17,11 +17,11 @@ const useStyles = makeStyles(theme => ({
     },
     expandButton: {
         borderRadius: '50px',
-        minWidth: '0px',
-        padding: theme.spacing(0.7, 0.7, 0.7, 0.7)
+        minWidth: '35px',
+        padding: '8px 3px 8px 6px'
     },
     expandIcon: {
-        fontSize: '0.875rem'
+        fontSize: '1.0rem'
     },
 }));
 
@@ -63,10 +63,11 @@ const renderExpandButton = (expanded, expandAction, classes) => {
     */
     const renderIcon = (expanded, classes) => {
         if (expanded) {
-            return <ArrowBackIos className={classes.expandIcon} width="0" />
+            return <ArrowBackIos className={classes.expandIcon} />
         }
 
-        return <ArrowForwardIos className={classes.expandIcon} width="0" />
+
+        return <ArrowForwardIos className={classes.expandIcon} />
     }
 
     return (

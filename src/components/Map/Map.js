@@ -4,7 +4,6 @@ import DeckGL, { HeatmapLayer } from 'deck.gl';
 
 // todo: remove this, place in config file, or in env variable.
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoid2ludGVyLW1vb24iLCJhIjoiY2s2dXE1dHI1MGJsZDNma2hlbnI2Z3NvciJ9.3Fomq0bT2ITqqqvCCUi2dg';
-// const DATA_URL = './data.json';
   
 class Map extends React.Component {
     constructor(props) {
@@ -25,37 +24,36 @@ class Map extends React.Component {
         this.setState({viewport: viewport});
     }
 
-    setTooltip = (object, x, y) => {
-        // object doesn't contain any data. How do i access the data from the hovered 
-        const el = document.getElementById('tooltip');
-        if (object) {
-            el.innerHTML = object.security;
-            el.style.display = 'block';
-            el.style.left = x + 'px';
-            el.style.top = y + 'px';
-        } else {
-            el.style.display = 'none';
-        }
-    }
-
-    _renderTooltip() {
-        const {hoveredObject, pointerX, pointerY} = this.state || {};
-        console.log(hoveredObject);
-        return hoveredObject && (
-            <div style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX, top: pointerY}}>
-                { hoveredObject.message }
-            </div>
-        );
-    }
-
     // Renders the heatMapLayer on top of the map
     _renderLayers() {
-        const {data = this.props.data, intensity = 2, threshold = 0.02, radiusPixels = 30, opacity=0.75} = this.props;
+        const {data = this.props.dataSource, intensity = 2, threshold = 0.01, radiusPixels = 30, opacity=0.75} = this.props;
+        const prefersDarkMode = this.props.prefersDarkMode;
+
+        const colorRangeDark= [
+            [217, 240, 163],
+            [173, 221, 142],
+            [120, 198, 121],
+            [49, 163, 84],
+            [0, 104, 55],
+            [0, 51, 0]
+        ];
+
+        const colorRangeLight = [
+            [1, 152, 189],
+            [73, 227, 206],
+            [216, 254, 181],
+            [254, 237, 177],
+            [254, 173, 84],
+            [209, 55, 78]
+        ];
+
+        const colorRange = prefersDarkMode ? colorRangeDark : colorRangeLight;
 
         return [
             new HeatmapLayer({
                 id: 'etf-visualizer-map',
                 data,
+                colorRange,
                 getPosition: d => [d['Coordinates'][0], d['Coordinates'][1]],
                 getWeight: d => Number(d['Weight']),
                 radiusPixels,
@@ -63,13 +61,6 @@ class Map extends React.Component {
                 threshold,
                 pickable: true,
                 opacity,
-                onHover: info => {
-                    console.log(info)
-                    this.setState({
-                    hoveredObject: info.object,
-                    pointerX: info.x,
-                    pointerY: info.y
-                })}
             })
         ];
     }
@@ -89,7 +80,7 @@ class Map extends React.Component {
                 width={expanded ? expandedWidth : defaultWidth}
                 disableTokenWarning={true}
             >
-                <DeckGL  // todo: find out how to get light and darkthemes of the deckGL/staticMap 
+                <DeckGL
                     initialViewState={this.state.viewport} 
                     onViewportChange={this.onViewportChange}
                     controller={true}
@@ -109,7 +100,6 @@ class Map extends React.Component {
                             preventStyleDiffing={true}
                         />
                     )}
-                    { this._renderTooltip() }
                 </DeckGL>
             </ReactMapGL>
         );
