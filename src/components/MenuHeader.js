@@ -38,7 +38,7 @@ const renderExpandButton = (expanded, expandAction, classes) => {
     or not.
     */
     const renderTooltip = (expanded, children) => {
-        const title = expanded ? 'Shrink' : 'Expand';
+        const title = expanded ? 'Collapse' : 'Expand';
 
         return (
             <Tooltip title={title} placement="right">

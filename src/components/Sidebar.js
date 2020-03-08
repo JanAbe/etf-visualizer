@@ -42,7 +42,7 @@ const Sidebar = ({ data, prefersDarkMode, expanded, expandAction }) => {
             return classes.fullWidth;
         }
 
-        return expanded ? classes.expandedWidth : classes.shrinkedWidth;
+        return expanded ? classes.expandedWidth : classes.defaultWidth;
     }
 
     return (
