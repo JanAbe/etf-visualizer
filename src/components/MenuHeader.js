@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ArrowForwardIos, ArrowBackIos } from '@material-ui/icons';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Grid, Button } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
     menuHeaderWrapper: {
@@ -87,6 +89,8 @@ const renderExpandButton = (expanded, expandAction, classes) => {
 
 const MenuHeader = ({ expanded, expandAction }) => {
     const classes = useStyles();
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
         <Grid container className={classes.menuHeaderWrapper}>
@@ -94,10 +98,11 @@ const MenuHeader = ({ expanded, expandAction }) => {
                 <h1>ETF Visualizer</h1>
             </Grid>
             <Grid item xs={1}>
-                {/* todo: maybe change colour of tooltip depending on dark/light theme. */}
-                <Grid container className={classes.expandIconWrapper}>
-                    { renderExpandButton(expanded, expandAction, classes) }
-                </Grid>
+                { !isSmallScreen &&
+                    <Grid container className={classes.expandIconWrapper}>
+                        { renderExpandButton(expanded, expandAction, classes) }
+                    </Grid>
+                }
             </Grid>
         </Grid>
     );

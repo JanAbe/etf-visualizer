@@ -5,6 +5,10 @@ const useStyles = makeStyles(theme => ({
     layout: {
         display: 'flex',
         height: '100vh',
+
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column-reverse',
+        }
     }
 }));
 

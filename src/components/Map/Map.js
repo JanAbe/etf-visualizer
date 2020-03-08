@@ -1,33 +1,20 @@
 import React from 'react';
 import ReactMapGL, { StaticMap } from 'react-map-gl';
 import DeckGL, { HeatmapLayer } from 'deck.gl';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 // todo: remove this, place in config file, or in env variable.
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoid2ludGVyLW1vb24iLCJhIjoiY2s2dXE1dHI1MGJsZDNma2hlbnI2Z3NvciJ9.3Fomq0bT2ITqqqvCCUi2dg';
   
-class Map extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            viewport: {
-                latitude: 18.022672,
-                longitude: 19.188889,
-                zoom: 1.92,
-                minZoom: 1.72,
-                pitch: 8,
-                bearing: 0
-            },
-        };
-    }
-
-    onViewportChange = viewport => {
-        this.setState({viewport: viewport});
-    }
+const Map = (props) => {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const prefersDarkMode = props.prefersDarkMode;
 
     // Renders the heatMapLayer on top of the map
-    _renderLayers() {
-        const {data = this.props.dataSource, intensity = 2, threshold = 0.01, radiusPixels = 30, opacity=0.75} = this.props;
-        const prefersDarkMode = this.props.prefersDarkMode;
+    const renderLayers = () => {
+        const {data = props.dataSource, intensity = 2, threshold = 0.01, radiusPixels = 30, opacity = 0.75} = props;
 
         const colorRangeDark= [
             [217, 240, 163],
@@ -65,46 +52,79 @@ class Map extends React.Component {
         ];
     }
 
-    render() {
-        const prefersDarkMode = this.props.prefersDarkMode;
-        const darkMapURL = 'mapbox://styles/mapbox/dark-v10';
-        const expanded = this.props.expanded;
+    // returns a dark map if the user is using a dark theme,
+    // returns a light theme otherwise
+    const renderMap = (prefersDarkMode) => {
+        if (prefersDarkMode) {
+            const darkMapURL = 'mapbox://styles/mapbox/dark-v10';
+            return (
+                <StaticMap 
+                    mapStyle={darkMapURL} 
+                    mapboxApiAccessToken={MAPBOX_TOKEN} 
+                    reuseMaps 
+                    preventStyleDiffing={true}
+                />
+            );
+        }
+
+        return (
+            <StaticMap 
+                mapboxApiAccessToken={MAPBOX_TOKEN} 
+                reuseMaps 
+                preventStyleDiffing={true}
+            />
+        );
+    }
+
+    // returns the correct width based on the screen size of the user
+    // and if the sidebar has been expanded or not
+    const getWidth = () => {
+        const fullWidth = '100%';
+        if (isSmallScreen) {
+            return fullWidth;
+        }
+
+        const expanded = props.expanded;
         const defaultWidth = '80%';
         const expandedWidth = '60%';
+        return expanded ? expandedWidth : defaultWidth;
+    }
+
+    // renders the complete map, with the layers and all
+    const renderCompleteMap = () => {
         const transitionSettings = 'width 0.3s';
+        const viewport = {
+            latitude: 18.022672,
+            longitude: 19.188889,
+            zoom: 1.92,
+            pitch: 8,
+            bearing: 0
+        }
 
         return (
             <ReactMapGL
                 style={{transition: transitionSettings}}
                 height='100%'
-                width={expanded ? expandedWidth : defaultWidth}
+                width={getWidth()}
                 disableTokenWarning={true}
             >
                 <DeckGL
-                    initialViewState={this.state.viewport} 
-                    onViewportChange={this.onViewportChange}
+                    initialViewState={viewport} 
                     controller={true}
-                    layers={this._renderLayers()}
+                    layers={renderLayers()}
                     disableTokenWarning={true}
                 >
-                    {prefersDarkMode ? (
-                        <StaticMap 
-                            mapStyle={darkMapURL} 
-                            mapboxApiAccessToken={MAPBOX_TOKEN} 
-                            reuseMaps 
-                            preventStyleDiffing={true}
-                        />
-                    ) : (
-                        <StaticMap 
-                            mapboxApiAccessToken={MAPBOX_TOKEN} 
-                            reuseMaps 
-                            preventStyleDiffing={true}
-                        />
-                    )}
+                    { renderMap(prefersDarkMode) }
                 </DeckGL>
             </ReactMapGL>
-        );
+        )
     }
+    
+    return (
+        <>
+        { renderCompleteMap() }
+        </>
+    );
 }
 
 export default Map;
