@@ -1,12 +1,66 @@
 import React from 'react';
 import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import _ from 'lodash';
 
 const useStyles = makeStyles(theme => ({
     dataTable: {
         overflowX: 'auto',
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
+
+    },
+    '@global': {
+        [theme.breakpoints.down('sm')]: {
+            'table.makeStyles-dataTable-209 thead': {
+                display: 'none'
+            },
+            'table.makeStyles-dataTable-209 td:nth-child(1)': {
+            },
+            'table.makeStyles-dataTable-209 td:nth-child(1):before': {
+                content: '"Ticker"'
+            },
+            'table.makeStyles-dataTable-209 td:nth-child(2):before': {
+                content: '"Security"'
+            },
+            'table.makeStyles-dataTable-209 td:nth-child(3):before': {
+                content: '"Market Value"'
+            },
+            'table.makeStyles-dataTable-209 td:nth-child(4):before': {
+                content: '"% of Net Assets"',
+            },
+            'table.makeStyles-dataTable-209 td:nth-child(1), table.makeStyles-dataTable-209 td:nth-child(2), table.makeStyles-dataTable-209 td:nth-child(3), table.makeStyles-dataTable-209 td:nth-child(4)': {
+                paddingLeft: '25%'
+            },
+            'table.makeStyles-dataTable-209 td:nth-child(1):before, table.makeStyles-dataTable-209 td:nth-child(2):before, table.makeStyles-dataTable-209 td:nth-child(3):before, table.makeStyles-dataTable-209 td:nth-child(4):before': {
+                position: 'absolute',
+                left: '0.5em',
+                fontWeight: 'bold'
+            },
+            'table.makeStyles-dataTable-209 tr, table.makeStyles-dataTable-209 td': {
+                textAlign: 'center',
+                display: 'block'
+            },
+            'table.makeStyles-dataTable-209 tr': {
+                position: 'relative',
+                marginBottom: '1em',
+                backgroundColor: theme.palette.background.paper,
+                color: theme.palette.text.primary,
+                transition: theme.transitions.create('box-shadow'),
+                borderRadius: theme.shape.borderRadius,
+                boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)'
+                // boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)'
+            },
+            'table.makeStyles-dataTable-209 tr td:last-child': {
+                borderBottom: 'none'
+            }
+        },
+        [theme.breakpoints.up('lg')]: {
+            'table.makeStyles-dataTable-209 tr:last-child td': {
+                borderBottom: 'none'
+            }
+        }
     }
 }));
 
@@ -32,10 +86,12 @@ const keysort = (key) => {
 
 const DataTable = ({ data, expanded }) => {
     const classes = useStyles();
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <Paper>
-            <Grid container>
+        // <Paper>
+            <Grid container className={isSmallScreen ? "" : "MuiPaper-root MuiPaper-rounded MuiPaper-elevation1"}>
                 <Grid item xs={12}>
                     <TableContainer>
                         <Table className={classes.dataTable}>
@@ -82,7 +138,7 @@ const DataTable = ({ data, expanded }) => {
                     </TableContainer>
                 </Grid>
             </Grid>
-        </Paper>
+        // </Paper>
     );
 }
 

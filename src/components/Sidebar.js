@@ -18,6 +18,13 @@ const useStyles = makeStyles(theme => ({
         zIndex: 1,
         transition: 'width 0.3s',
         overflowY: 'scroll',
+
+        [theme.breakpoints.down('sm')]: {
+            flex: '0 0 400px',
+        },
+        [theme.breakpoints.down('md')]: {
+            flex: '0 0 550px',
+        }
     },
     defaultWidth: {
         width: '20%'
