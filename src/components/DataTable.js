@@ -58,7 +58,7 @@ const DataTable = ({ data, expanded }) => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {getCountriesAsc(data)}
+                                {/* {getCountriesAsc(data)} */}
                                 {data.slice(0, 10).map(row => (
                                     <TableRow hover key={row['Ticker']}>
                                         <TableCell>
