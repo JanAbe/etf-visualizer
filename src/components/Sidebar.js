@@ -19,12 +19,9 @@ const useStyles = makeStyles(theme => ({
         transition: 'width 0.3s',
         overflowY: 'scroll',
 
-        [theme.breakpoints.down('sm')]: {
-            flex: '0 0 400px',
+        [theme.breakpoints.down('750')]: {
+            flex: '0 0 380px'
         },
-        [theme.breakpoints.down('md')]: {
-            flex: '0 0 550px',
-        }
     },
     defaultWidth: {
         width: '20%'
@@ -59,7 +56,7 @@ const Sidebar = ({ data, prefersDarkMode, expanded, expandAction }) => {
             <Divider />
             <GeneralInfo />
             <DataTable data={data} expanded={expanded} />
-            <Legend prefersDarkMode={prefersDarkMode} />
+            <Legend prefersDarkMode={prefersDarkMode} expanded={expanded}/>
         </Grid>
     );
 }

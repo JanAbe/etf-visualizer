@@ -8,41 +8,46 @@ import _ from 'lodash';
 const useStyles = makeStyles(theme => ({
     dataTable: {
         overflowX: 'auto',
-        whiteSpace: 'nowrap',
-
+        whiteSpace: 'nowrap'
     },
     '@global': {
-        [theme.breakpoints.down('sm')]: {
-            'table.makeStyles-dataTable-209 thead': {
+        [theme.breakpoints.down('750')]: {
+            '#dataTableETF thead': {
                 display: 'none'
             },
-            'table.makeStyles-dataTable-209 td:nth-child(1)': {
+            '#dataTableETF th, #dataTableETF td': {
+                padding: '1.0em'
             },
-            'table.makeStyles-dataTable-209 td:nth-child(1):before': {
-                content: '"Ticker"'
+            '#dataTableETF td:nth-child(1)': {
             },
-            'table.makeStyles-dataTable-209 td:nth-child(2):before': {
-                content: '"Security"'
+            '#dataTableETF td:nth-child(1):before': {
+                content: '"Country"'
             },
-            'table.makeStyles-dataTable-209 td:nth-child(3):before': {
+            '#dataTableETF td:nth-child(2):before': {
+                content: '"Security"',
+            },
+            '#dataTableETF td:nth-child(3):before': {
                 content: '"Market Value"'
             },
-            'table.makeStyles-dataTable-209 td:nth-child(4):before': {
-                content: '"% of Net Assets"',
+            '#dataTableETF td:nth-child(4):before': {
+                content: '"Percentage of Net Assets"',
             },
-            'table.makeStyles-dataTable-209 td:nth-child(1), table.makeStyles-dataTable-209 td:nth-child(2), table.makeStyles-dataTable-209 td:nth-child(3), table.makeStyles-dataTable-209 td:nth-child(4)': {
-                paddingLeft: '25%'
+            '#dataTableETF td:nth-child(1), #dataTableETF td:nth-child(2), #dataTableETF td:nth-child(3), #dataTableETF td:nth-child(4)': {
+                paddingLeft: '30%'
             },
-            'table.makeStyles-dataTable-209 td:nth-child(1):before, table.makeStyles-dataTable-209 td:nth-child(2):before, table.makeStyles-dataTable-209 td:nth-child(3):before, table.makeStyles-dataTable-209 td:nth-child(4):before': {
+            '#dataTableETF td:nth-child(1):before, #dataTableETF td:nth-child(2):before, #dataTableETF td:nth-child(3):before, #dataTableETF td:nth-child(4):before': {
                 position: 'absolute',
-                left: '0.5em',
+                left: '1.5em',
                 fontWeight: 'bold'
             },
-            'table.makeStyles-dataTable-209 tr, table.makeStyles-dataTable-209 td': {
-                textAlign: 'center',
-                display: 'block'
+            '#dataTableETF tr, #dataTableETF td': {
+                textAlign: 'end',
+                display: 'block',
             },
-            'table.makeStyles-dataTable-209 tr': {
+            '#dataTableETF td': {
+                whiteSpace: 'initial'
+            },
+            '#dataTableETF tr': {
                 position: 'relative',
                 marginBottom: '1em',
                 backgroundColor: theme.palette.background.paper,
@@ -50,14 +55,13 @@ const useStyles = makeStyles(theme => ({
                 transition: theme.transitions.create('box-shadow'),
                 borderRadius: theme.shape.borderRadius,
                 boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)'
-                // boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)'
             },
-            'table.makeStyles-dataTable-209 tr td:last-child': {
+            '#dataTableETF tr td:last-child': {
                 borderBottom: 'none'
             }
         },
         [theme.breakpoints.up('lg')]: {
-            'table.makeStyles-dataTable-209 tr:last-child td': {
+            '#dataTableETF tr:last-child td': {
                 borderBottom: 'none'
             }
         }
@@ -84,61 +88,55 @@ const keysort = (key) => {
 //     console.log(x);
 // } 
 
-const DataTable = ({ data, expanded }) => {
+const DataTable = ({ data }) => {
     const classes = useStyles();
     const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('750'));
 
     return (
-        // <Paper>
-            <Grid container className={isSmallScreen ? "" : "MuiPaper-root MuiPaper-rounded MuiPaper-elevation1"}>
-                <Grid item xs={12}>
-                    <TableContainer>
-                        <Table className={classes.dataTable}>
-                            <TableHead>
-                                <TableRow>
+        <Grid container className={isSmallScreen ? "" : "MuiPaper-root MuiPaper-rounded MuiPaper-elevation1"}>
+            <Grid item xs={12}>
+                <TableContainer>
+                    <Table id="dataTableETF" className={classes.dataTable}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>
+                                    Country
+                                </TableCell>
+                                <TableCell>
+                                    Security
+                                </TableCell>
+                                <TableCell align="center">
+                                    Market Value
+                                </TableCell>
+                                <TableCell align="center">
+                                    % of Total
+                                </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {/* {getCountriesAsc(data)} */}
+                            {data.slice(0, 10).map(row => (
+                                <TableRow hover key={row['Ticker']}>
                                     <TableCell>
-                                        Ticker
+                                        {row['Location']}
                                     </TableCell>
                                     <TableCell>
-                                        Security
+                                        {row['Name']}
                                     </TableCell>
-                                    {expanded && 
-                                        <TableCell align="center">
-                                            Market Value
-                                        </TableCell>
-                                    }
                                     <TableCell align="center">
-                                        % of Total
+                                        ${row['Market Value']}
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        {row['Weight']}%
                                     </TableCell>
                                 </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {/* {getCountriesAsc(data)} */}
-                                {data.slice(0, 10).map(row => (
-                                    <TableRow hover key={row['Ticker']}>
-                                        <TableCell>
-                                            {row['Ticker']}
-                                        </TableCell>
-                                        <TableCell>
-                                            {row['Name']}
-                                        </TableCell>
-                                        {expanded &&
-                                            <TableCell align="center">
-                                                ${row['Market Value']}
-                                            </TableCell>
-                                        }
-                                        <TableCell align="center">
-                                            {row['Weight']}%
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Grid>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </Grid>
-        // </Paper>
+        </Grid>
     );
 }
 

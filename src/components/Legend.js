@@ -12,7 +12,11 @@ const useStyles = makeStyles(theme => ({
 	},
 	legendTextWrapper: {
 		display: 'flex',
-		justifyContent: 'space-evenly'
+		justifyContent: 'space-evenly',
+
+		[theme.breakpoints.down('750')]: {
+			justifyContent: 'space-around'
+		}
 	},
 	legendText: {
 		display: 'flex',
@@ -27,8 +31,11 @@ const useStyles = makeStyles(theme => ({
 	size: {
 		width: '2em',
 		height: '2em',
-		marginLeft: '0.75em',
-		marginRight: '0.75em'
+
+		[theme.breakpoints.down('750')]: {
+			marginLeft: '0.5em',
+			marginRight: '0.5em'
+		}
 	},
 	color1: {
 		backgroundColor: 'rgb(1, 152, 189)',
@@ -71,19 +78,27 @@ const useStyles = makeStyles(theme => ({
 	},
 	rightMargin: {
 		marginRight: '1em'
+	},
+	defaultMargin: {
+		marginLeft: '0.75em',
+		marginRight: '0.75em',
+	},
+	smallMargin: {
+		marginLeft: '0.5em',
+		marginRight: '0.5em',
 	}
 }));
 
-const renderLegend = (prefersDarkMode, classes) => {
+const renderLegend = (prefersDarkMode, expanded, classes) => {
 	if (prefersDarkMode) {
 		return (
 			<>
-			<div className={[classes.colorDark1, classes.size].join(' ')}></div>
-			<div className={[classes.colorDark2, classes.size].join(' ')}></div>
-			<div className={[classes.colorDark3, classes.size].join(' ')}></div>
-			<div className={[classes.colorDark4, classes.size].join(' ')}></div>
-			<div className={[classes.colorDark5, classes.size].join(' ')}></div>
-			<div className={[classes.colorDark6, classes.size].join(' ')}></div>
+			<div className={[classes.colorDark1, classes.size, expanded ? classes.defaultMargin : classes.smallMargin].join(' ')}></div>
+			<div className={[classes.colorDark2, classes.size, expanded ? classes.defaultMargin : classes.smallMargin].join(' ')}></div>
+			<div className={[classes.colorDark3, classes.size, expanded ? classes.defaultMargin : classes.smallMargin].join(' ')}></div>
+			<div className={[classes.colorDark4, classes.size, expanded ? classes.defaultMargin : classes.smallMargin].join(' ')}></div>
+			<div className={[classes.colorDark5, classes.size, expanded ? classes.defaultMargin : classes.smallMargin].join(' ')}></div>
+			<div className={[classes.colorDark6, classes.size, expanded ? classes.defaultMargin : classes.smallMargin].join(' ')}></div>
 			</>
 		);
 	}
@@ -100,24 +115,24 @@ const renderLegend = (prefersDarkMode, classes) => {
 	);
 }
 
-const Legend = ({ prefersDarkMode }) => {
+const Legend = ({ prefersDarkMode, expanded }) => {
 	const classes = useStyles();
 
 	return (
 		<Paper style={{marginBottom: '1em'}}>
 			<div className={classes.wrapper}>
-				{ renderLegend(prefersDarkMode, classes) }
+				{ renderLegend(prefersDarkMode, expanded, classes) }
 			</div>
 			<div className={classes.legendTextWrapper}>
 				<div className={[classes.legendText, classes.leftMargin].join(' ')}>
 					<ArrowBack fontSize='small' />
 					<p className={classes.leftText}>
-						Less Money Invested
+						Less Money
 					</p>
 				</div>
 				<div className={[classes.legendText, classes.rightMargin].join(' ')}>
 					<p className={classes.rightText}>
-						More Money Invested
+						More Money
 					</p>
 					<ArrowForward fontSize='small' />
 				</div>
