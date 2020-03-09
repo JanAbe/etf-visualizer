@@ -157,12 +157,12 @@ const Legend = ({ prefersDarkMode, expanded }) => {
 				<div className={[classes.legendText, classes.leftMargin].join(' ')}>
 					<ArrowBack fontSize='small' />
 					<p className={classes.leftText}>
-						Less Money
+						Less Invested
 					</p>
 				</div>
 				<div className={[classes.legendText, classes.rightMargin].join(' ')}>
 					<p className={classes.rightText}>
-						More Money
+						More Invested
 					</p>
 					<ArrowForward fontSize='small' />
 				</div>
