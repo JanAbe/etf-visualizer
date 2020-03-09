@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactMapGL, { StaticMap } from 'react-map-gl';
+import ReactMapGL, { StaticMap, FlyToInterpolator } from 'react-map-gl';
 import DeckGL, { HeatmapLayer } from 'deck.gl';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -97,18 +97,39 @@ const Map = (props) => {
         return expanded ? expandedWidth : defaultWidth;
     }
 
+    // flies to the provided coords
+    const onFlyTo = (lng, lat) => {
+        const newViewport = {
+            bearing: 0,
+            pitch: 8,
+            longitude: lng,
+            latitude: lat,
+            zoom: 5,
+            transitionDuration: 3000,
+            transitionInterpolator: new FlyToInterpolator()
+        }
+        setViewport(newViewport);
+    }
+
     // renders the complete map, with the layers and all
     const renderCompleteMap = () => {
         const transitionSettings = 'width 0.3s';
 
         return (
+            <>
             <ReactMapGL
                 style={{transition: transitionSettings}}
                 height='100%'
                 width={getWidth()}
                 disableTokenWarning={true}
+                {...viewport}
+                onViewportChange={setViewport}
+                mapboxApiAccessToken={MAPBOX_TOKEN} 
+                reuseMaps 
+                preventStyleDiffing={true}
             >
                 <DeckGL
+                    viewState={viewport}
                     initialViewState={viewport} 
                     onViewportChange={setViewport}
                     controller={true}
@@ -118,6 +139,8 @@ const Map = (props) => {
                     { renderMap(prefersDarkMode) }
                 </DeckGL>
             </ReactMapGL>
+            <button onClick={() => onFlyTo(0, 0)}>fly</button>
+            </>
         )
     }
     
