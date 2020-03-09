@@ -6,6 +6,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import _ from 'lodash';
+import * as actions from '../store/actions';
+import * as selectors from '../store/selectors';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     dataTable: {
@@ -69,6 +72,12 @@ const useStyles = makeStyles(theme => ({
             '#dataTableETF tr:last-child td': {
                 borderBottom: 'none'
             }
+        },
+        '#dataTableETF thead tr': {
+            cursor: 'default'
+        },
+        '#dataTableETF tr': {
+            cursor: 'pointer'
         }
     }
 }));
@@ -97,6 +106,15 @@ const DataTable = ({ data }) => {
     const classes = useStyles();
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('750'));
+    const dispatch = useDispatch();
+
+    const handleRowClick = (coordinates) => {
+        dispatch(actions.setViewportState({
+            longitude: coordinates[0],
+            latitude: coordinates[1],
+            zoom: 5
+        }));
+    }
 
     return (
         <Grid container className={isSmallScreen ? "" : "MuiPaper-root MuiPaper-rounded MuiPaper-elevation1"}>
@@ -131,7 +149,7 @@ const DataTable = ({ data }) => {
                         <TableBody>
                             {/* {getCountriesAsc(data)} */}
                             {data.slice(0, 10).map(row => (
-                                <TableRow hover key={row['Ticker']}>
+                                <TableRow hover key={row['Ticker']} onClick={() => handleRowClick(row['Coordinates'])}>
                                     <TableCell>
                                         {row['Location']}
                                     </TableCell>
