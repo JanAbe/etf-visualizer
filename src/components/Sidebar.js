@@ -12,8 +12,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
     sidebar: {
-        paddingLeft: '2em',
-        paddingRight: '2em',
+        paddingLeft: '1.5em',
+        paddingRight: '1.5em',
         boxShadow: '5px 1px 10px 0px rgba(50, 50, 50, 0.3)',
         zIndex: 1,
         transition: 'width 0.3s',

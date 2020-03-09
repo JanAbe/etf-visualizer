@@ -91,6 +91,8 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
+// renders the legend correctly, based on if the screen is small, if the sidebar has been expanded,
+// or if the user prefers darkmode
 const renderLegend = (prefersDarkMode, expanded, isSmallScreen, classes) => {
 	if (prefersDarkMode) {
 		if (isSmallScreen) {
@@ -145,7 +147,7 @@ const renderLegend = (prefersDarkMode, expanded, isSmallScreen, classes) => {
 
 const Legend = ({ prefersDarkMode, expanded }) => {
 	const classes = useStyles();
-    const theme = useTheme();
+	const theme = useTheme();
 	const isSmallScreen = useMediaQuery(theme.breakpoints.down('750'));
 
 	return (

@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 
 /*
-renderExpandButton renders the expand/shrink button
+renderExpandButton renders the expand/collapse button
 */
 const renderExpandButton = (expanded, expandAction, classes) => {
     /*

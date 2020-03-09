@@ -1,5 +1,7 @@
 import React from 'react';
-import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Grid, Paper } from '@material-ui/core';
+import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Grid } from '@material-ui/core';
+import InfoIcon from '@material-ui/icons/Info';
+import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -9,6 +11,9 @@ const useStyles = makeStyles(theme => ({
     dataTable: {
         overflowX: 'auto',
         whiteSpace: 'nowrap'
+    },
+    tooltip: {
+        paddingLeft: '0.2em'
     },
     '@global': {
         [theme.breakpoints.down('750')]: {
@@ -105,12 +110,21 @@ const DataTable = ({ data }) => {
                                 </TableCell>
                                 <TableCell>
                                     Security
+                                    <Tooltip className={classes.tooltip} arrow title="The name of the stock they invested in" placement="top">
+                                        <InfoIcon fontSize="small"></InfoIcon>
+                                    </Tooltip>
                                 </TableCell>
                                 <TableCell align="center">
                                     Market Value
+                                    <Tooltip className={classes.tooltip} arrow title="How much money they invested in this security" placement="top">
+                                        <InfoIcon fontSize="small"></InfoIcon>
+                                    </Tooltip>
                                 </TableCell>
                                 <TableCell align="center">
                                     % of Total
+                                    <Tooltip className={classes.tooltip} arrow title="What percentage of their net assets they invested in this security" placement="top">
+                                        <InfoIcon fontSize="small"></InfoIcon>
+                                    </Tooltip>
                                 </TableCell>
                             </TableRow>
                         </TableHead>
