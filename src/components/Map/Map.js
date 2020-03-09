@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactMapGL, { StaticMap } from 'react-map-gl';
 import DeckGL, { HeatmapLayer } from 'deck.gl';
 import { useTheme } from '@material-ui/core/styles';
@@ -11,6 +11,13 @@ const Map = (props) => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const prefersDarkMode = props.prefersDarkMode;
+    const [viewport, setViewport] = useState({
+        latitude: 18.022672,
+        longitude: 19.188889,
+        zoom: 1.92,
+        pitch: 8,
+        bearing: 0
+    });
 
     // Renders the heatMapLayer on top of the map
     const renderLayers = () => {
@@ -93,13 +100,6 @@ const Map = (props) => {
     // renders the complete map, with the layers and all
     const renderCompleteMap = () => {
         const transitionSettings = 'width 0.3s';
-        const viewport = {
-            latitude: 18.022672,
-            longitude: 19.188889,
-            zoom: 1.92,
-            pitch: 8,
-            bearing: 0
-        }
 
         return (
             <ReactMapGL
@@ -110,6 +110,7 @@ const Map = (props) => {
             >
                 <DeckGL
                     initialViewState={viewport} 
+                    onViewportChange={setViewport}
                     controller={true}
                     layers={renderLayers()}
                     disableTokenWarning={true}
