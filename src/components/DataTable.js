@@ -19,6 +19,15 @@ const useStyles = makeStyles(theme => ({
     tooltip: {
         paddingLeft: '0.2em'
     },
+    paginationWrapper: {
+        display:'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center'
+    },
+    caption: {
+        paddingLeft: '1em',
+        opacity: '0.7'
+    },
     '@global': {
         [theme.breakpoints.down('750')]: {
             '#dataTableETF thead': {
@@ -69,11 +78,6 @@ const useStyles = makeStyles(theme => ({
                 borderBottom: 'none'
             }
         },
-        // [theme.breakpoints.up('lg')]: {
-        //     '#dataTableETF tr:last-child td': {
-        //         borderBottom: 'none'
-        //     }
-        // },
         '#dataTableETF thead tr': {
             cursor: 'default'
         },
@@ -153,15 +157,17 @@ const DataTable = ({ data }) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <TablePagination
-                    component="div"
-                    // className={classes.pagination}
-                    count={data.length}
-                    rowsPerPage={rowsPerPage}
-                    rowsPerPageOptions={[7]}
-                    page={page}
-                    onChangePage={handleChangePage}
-                />
+                <div className={classes.paginationWrapper}>
+                    <caption className={classes.caption}>Information about the holdings of the ETF</caption>
+                    <TablePagination
+                        component="div"
+                        // className={classes.pagination}
+                        count={data.length}
+                        rowsPerPage={rowsPerPage}
+                        rowsPerPageOptions={[7]}
+                        page={page}
+                        onChangePage={handleChangePage} />
+                </div>
             </Grid>
         </Grid>
     );
