@@ -1,4 +1,5 @@
 import * as actions from './actions';
+import { FlyToInterpolator } from 'react-map-gl';
 
 const initialViewport = {
 	latitude: 18.022672,
@@ -19,6 +20,20 @@ export default (state=initialState, action) => {
 				...state,
 				viewport: action.viewport
 			}
+		case actions.FLY: {
+			return {
+				...state,
+				viewport: {
+					zoom: 5,
+					pitch: 8,
+					bearing: 0,
+					transitionInterpolator: new FlyToInterpolator(),
+					transitionDuration: action.duration,
+					latitude: action.latitude,
+					longitude: action.longitude
+				}
+			}
+		}
 		default:
 			return state
 	}

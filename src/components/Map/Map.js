@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMapGL, { StaticMap, FlyToInterpolator } from 'react-map-gl';
 import DeckGL, { HeatmapLayer } from 'deck.gl';
 import { useTheme } from '@material-ui/core/styles';
@@ -148,7 +148,6 @@ const Map = (props) => {
                     { renderMap(prefersDarkMode) }
                 </DeckGL>
             </ReactMapGL>
-            {/* <button onClick={() => onFlyTo(0, 0)}>fly</button> */}
             </>
         )
     }

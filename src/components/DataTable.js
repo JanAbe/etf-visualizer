@@ -1,5 +1,5 @@
-import React from 'react';
-import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Grid } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, TablePagination, Grid } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,6 +9,7 @@ import _ from 'lodash';
 import * as actions from '../store/actions';
 import * as selectors from '../store/selectors';
 import { useDispatch } from 'react-redux';
+import { FlyToInterpolator } from 'react-map-gl';
 
 const useStyles = makeStyles(theme => ({
     dataTable: {
@@ -68,11 +69,11 @@ const useStyles = makeStyles(theme => ({
                 borderBottom: 'none'
             }
         },
-        [theme.breakpoints.up('lg')]: {
-            '#dataTableETF tr:last-child td': {
-                borderBottom: 'none'
-            }
-        },
+        // [theme.breakpoints.up('lg')]: {
+        //     '#dataTableETF tr:last-child td': {
+        //         borderBottom: 'none'
+        //     }
+        // },
         '#dataTableETF thead tr': {
             cursor: 'default'
         },
@@ -82,38 +83,24 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const keysort = (key) => {
-    return (a, b) => {
-        if (a[key] > b[key]) return 1;
-        if (a[key] < b[key]) return -1;
-        return 0;
-    }
-}
-
-// todo: write code, to sum up all weight's from the sortedGroupData
-// so i get the countries sorted on weight 
-// const getCountriesAsc = (data) => {
-//     const groupedData = _.groupBy(data, d => d.Location);
-//     const sortedGroupedData = Object.entries(groupedData).sort(keysort('Weight'));
-//     const x = _.sumBy(sortedGroupedData, (obj) => {
-//         return _.sum(Number(obj[1].Weight));
-//     });
-
-//     console.log(x);
-// } 
-
 const DataTable = ({ data }) => {
     const classes = useStyles();
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('750'));
     const dispatch = useDispatch();
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(9);
 
     const handleRowClick = (coordinates) => {
-        dispatch(actions.setViewportState({
-            longitude: coordinates[0],
-            latitude: coordinates[1],
-            zoom: 5
-        }));
+        dispatch(actions.fly(
+            coordinates[0],
+            coordinates[1],
+            3000,
+        ));
+    }
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
     }
 
     return (
@@ -134,22 +121,21 @@ const DataTable = ({ data }) => {
                                 </TableCell>
                                 <TableCell align="center">
                                     Market Value
-                                    <Tooltip className={classes.tooltip} arrow title="How much money they invested in this security" placement="top">
+                                    <Tooltip className={classes.tooltip} arrow title="Amount of money invested in this security" placement="top">
                                         <InfoIcon fontSize="small"></InfoIcon>
                                     </Tooltip>
                                 </TableCell>
                                 <TableCell align="center">
                                     % of Total
-                                    <Tooltip className={classes.tooltip} arrow title="What percentage of their net assets they invested in this security" placement="top">
+                                    <Tooltip className={classes.tooltip} arrow title="What percentage of the net assets is invested in this security" placement="top">
                                         <InfoIcon fontSize="small"></InfoIcon>
                                     </Tooltip>
                                 </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {/* {getCountriesAsc(data)} */}
-                            {data.slice(0, 10).map(row => (
-                                <TableRow hover key={row['Ticker']} onClick={() => handleRowClick(row['Coordinates'])}>
+                            {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
+                                <TableRow hover key={row['Ticker']} >
                                     <TableCell>
                                         {row['Location']}
                                     </TableCell>
@@ -167,6 +153,15 @@ const DataTable = ({ data }) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                <TablePagination
+                    component="div"
+                    // className={classes.pagination}
+                    count={data.length}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[7]}
+                    page={page}
+                    onChangePage={handleChangePage}
+                />
             </Grid>
         </Grid>
     );
