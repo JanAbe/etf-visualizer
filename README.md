@@ -1,68 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ETF Visualizer
 
-## Available Scripts
+Get a visualization of the holdings of the ETF.
 
-In the project directory, you can run:
+At the moment it only visualizes the iShares ETF for upcoming markets and is not dynamic in any way.
+The idea was to make it so the user can search for a certain ETF, which the app would visualize and display data off.
+The problem was that I couldn't find any good data sources besides the one from the iShares ETF for upcoming markets. This is the reason why this functionality has been left out (at least for the moment).
+Another problem is that I need the coordinates of the main address of the company that sells the stock the ETF has invested in. So if the ETF has invested in BABA stock, I would need the coordinates of the alibaba company. The problem is that I couldn't find any sources providing this data. The data from the iShares ETF for upcoming markets came closest, in that it provided data about in which country the company that sells the stock is located in, and that it provided the ticker/symbol of the company. Using this data I scraped the yahoo.finance website to gain address information (located on the profile tab, found after looking up a company based on ticker name). Then I used another mapbox service to transform this address into coordinates. If no address were found, or no coordinates were found based on the provided address (which happened quite a lot), I would use the country as the location. This is the reason why for example in the middle of China, a lot of companies are located (at least according to my visualization), even though this is incorrect.
 
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### Roadmap
+- Add a flight to location feature. If a user presses a row in the dataTable, the map flies to the location of this holding.
+  - this was almost implemented, but it didn't really work the way i wanted it to. Because of this, i opted to leave it out.
+- Add a search feature so the user can search through the dataTable, for example for all holdings located in China.
+  - this was almost implemented, but i couldn't find a good place for a searchbar in the UI. Also i didn't want to redo the whole UI for all device-sizes.
