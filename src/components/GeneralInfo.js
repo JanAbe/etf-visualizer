@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
     generalInfoWrapper: {
         marginTop: '1em',
         marginBottom: '1em',
-        padding: '20px'
+        padding: '1.0em'
     }
 }));
 

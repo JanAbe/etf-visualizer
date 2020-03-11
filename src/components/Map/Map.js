@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import ReactMapGL, { StaticMap, FlyToInterpolator } from 'react-map-gl';
+import React, { useState } from 'react';
+import ReactMapGL, { StaticMap } from 'react-map-gl';
 import DeckGL, { HeatmapLayer } from 'deck.gl';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../store/actions';
-import * as selectors from '../../store/selectors'
 
 // todo: remove this, place in config file, or in env variable.
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoid2ludGVyLW1vb24iLCJhIjoiY2s2dXE1dHI1MGJsZDNma2hlbnI2Z3NvciJ9.3Fomq0bT2ITqqqvCCUi2dg';
-  
+
 const Map = (props) => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const prefersDarkMode = props.prefersDarkMode;
-    // const [viewport, setViewport] = useState({
-    //     latitude: 18.022672,
-    //     longitude: 19.188889,
-    //     zoom: 1.92,
-    //     pitch: 8,
-    //     bearing: 0
-    // });
-    const viewport = useSelector(selectors.selectViewport);
-    const dispatch = useDispatch();
+    const [viewport, setViewport] = useState({
+        latitude: 18.022672,
+        longitude: 19.188889,
+        zoom: 1.92,
+        pitch: 8,
+        bearing: 0
+    });
 
     // Renders the heatMapLayer on top of the map
     const renderLayers = () => {
@@ -102,45 +97,20 @@ const Map = (props) => {
         return expanded ? expandedWidth : defaultWidth;
     }
 
-    const onViewportChanged = viewport => {
-        dispatch(actions.setViewportState(viewport))
-    }
-
-    // flies to the provided coords
-    // const onFlyTo = (lng, lat) => {
-    //     const newViewport = {
-    //         bearing: 0,
-    //         pitch: 8,
-    //         longitude: lng,
-    //         latitude: lat,
-    //         zoom: 5,
-    //         transitionDuration: 3000,
-    //         transitionInterpolator: new FlyToInterpolator()
-    //     }
-    //     setViewport(newViewport);
-    // }
-
     // renders the complete map, with the layers and all
     const renderCompleteMap = () => {
         const transitionSettings = 'width 0.3s';
 
         return (
-            <>
             <ReactMapGL
                 style={{transition: transitionSettings}}
                 height='100%'
                 width={getWidth()}
                 disableTokenWarning={true}
-                {...viewport}
-                onViewportChange={onViewportChanged}
-                mapboxApiAccessToken={MAPBOX_TOKEN} 
-                reuseMaps 
-                preventStyleDiffing={true}
             >
                 <DeckGL
-                    viewState={viewport}
                     initialViewState={viewport} 
-                    onViewportChange={onViewportChanged}
+                    onViewportChange={setViewport}
                     controller={true}
                     layers={renderLayers()}
                     disableTokenWarning={true}
@@ -148,7 +118,6 @@ const Map = (props) => {
                     { renderMap(prefersDarkMode) }
                 </DeckGL>
             </ReactMapGL>
-            </>
         )
     }
     

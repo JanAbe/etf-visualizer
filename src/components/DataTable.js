@@ -1,15 +1,9 @@
-import React, { useEffect } from 'react';
-import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, TablePagination, Grid } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Tooltip, TablePagination, Grid } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
-import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import _ from 'lodash';
-import * as actions from '../store/actions';
-import * as selectors from '../store/selectors';
-import { useDispatch } from 'react-redux';
-import { FlyToInterpolator } from 'react-map-gl';
 
 const useStyles = makeStyles(theme => ({
     dataTable: {
@@ -20,9 +14,13 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: '0.2em'
     },
     paginationWrapper: {
-        display:'flex', 
+        display: 'flex', 
         justifyContent: 'space-between', 
-        alignItems: 'center'
+        alignItems: 'center',
+
+        [theme.breakpoints.down('750')]: {
+            flexDirection: 'column-reverse',
+        }
     },
     caption: {
         paddingLeft: '1em',
@@ -35,8 +33,6 @@ const useStyles = makeStyles(theme => ({
             },
             '#dataTableETF th, #dataTableETF td': {
                 padding: '1.0em'
-            },
-            '#dataTableETF td:nth-child(1)': {
             },
             '#dataTableETF td:nth-child(1):before': {
                 content: '"Country"'
@@ -77,34 +73,48 @@ const useStyles = makeStyles(theme => ({
             '#dataTableETF tr td:last-child': {
                 borderBottom: 'none'
             }
-        },
-        '#dataTableETF thead tr': {
-            cursor: 'default'
-        },
-        '#dataTableETF tr': {
-            cursor: 'pointer'
         }
     }
 }));
 
-const DataTable = ({ data }) => {
+const DataTable = ({ data, expanded }) => {
     const classes = useStyles();
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('750'));
-    const dispatch = useDispatch();
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(9);
-
-    const handleRowClick = (coordinates) => {
-        dispatch(actions.fly(
-            coordinates[0],
-            coordinates[1],
-            3000,
-        ));
-    }
+    const [page, setPage] = useState(0);
+    const [rowsPerPage] = useState(9);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
+    }
+
+    const renderPagination = () => {
+        if (expanded) {
+            return (
+                <div className={classes.paginationWrapper}>
+                    <p className={classes.caption}>Data of the holdings of the ETF</p>
+                    <TablePagination
+                        component="div"
+                        count={data.length}
+                        rowsPerPage={rowsPerPage}
+                        rowsPerPageOptions={[7]}
+                        page={page}
+                        onChangePage={handleChangePage} />
+                </div>
+            )
+        }
+        return (
+            <div className={classes.paginationWrapper} style={{flexDirection: 'column'}}>
+                <p className={classes.caption}>Data of the holdings of the ETF</p>
+            <TablePagination
+                component="div"
+                count={data.length}
+                rowsPerPage={rowsPerPage}
+                rowsPerPageOptions={[7]}
+                page={page}
+                onChangePage={handleChangePage} />
+            </div>
+        )
     }
 
     return (
@@ -139,7 +149,7 @@ const DataTable = ({ data }) => {
                         </TableHead>
                         <TableBody>
                             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-                                <TableRow hover key={row['Ticker']} >
+                                <TableRow hover key={row['Ticker']}>
                                     <TableCell>
                                         {row['Location']}
                                     </TableCell>
@@ -157,17 +167,7 @@ const DataTable = ({ data }) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <div className={classes.paginationWrapper}>
-                    <caption className={classes.caption}>Information about the holdings of the ETF</caption>
-                    <TablePagination
-                        component="div"
-                        // className={classes.pagination}
-                        count={data.length}
-                        rowsPerPage={rowsPerPage}
-                        rowsPerPageOptions={[7]}
-                        page={page}
-                        onChangePage={handleChangePage} />
-                </div>
+                { renderPagination() }
             </Grid>
         </Grid>
     );

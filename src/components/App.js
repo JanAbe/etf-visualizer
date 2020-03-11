@@ -3,8 +3,6 @@ import Layout from './Layout';
 import Map from './Map/Map';
 import Sidebar from './Sidebar';
 import { useMediaQuery, createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
-import store from '../store/store';
-import { Provider } from 'react-redux';
 
 const App = ({ data, dataSource }) =>  {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -34,12 +32,10 @@ const App = ({ data, dataSource }) =>  {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Provider store={store}>
-                <Layout>
-                    <Sidebar data={data} prefersDarkMode={prefersDarkMode} expanded={expanded} expandAction={handleExpandButtonClick} />
-                    <Map prefersDarkMode={prefersDarkMode} expanded={expanded} dataSource={dataSource} />
-                </Layout>
-            </Provider>
+            <Layout>
+                <Sidebar data={data} prefersDarkMode={prefersDarkMode} expanded={expanded} expandAction={handleExpandButtonClick} />
+                <Map prefersDarkMode={prefersDarkMode} expanded={expanded} dataSource={dataSource} />
+            </Layout>
         </ThemeProvider>
     );
 }
